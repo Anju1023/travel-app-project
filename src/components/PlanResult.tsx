@@ -5,6 +5,7 @@ import { convertPlanToMarkdown } from '@/utils/planToMarkdown';
 import TimelineSection from './TimelineSection';
 import HotelSection from './HotelSection';
 import MapSection from './MapSection';
+import AdviceSection from './AdviceSection';
 
 /**
  * 旅行プランの生成結果を表示するコンポーネント
@@ -66,6 +67,9 @@ export default function PlanResult({ plan, onReset }: { plan: PlanData; onReset:
 
       {/* 宿泊先提案セクション */}
       <HotelSection hotels={plan.hotels} />
+
+      {/* 持ち物リスト & アドバイス 🎒💡 */}
+      <AdviceSection packingList={plan.packingList} advice={plan.advice} />
 
       {/* リセットボタン */}
       <div className="flex justify-center pt-8 pb-12">

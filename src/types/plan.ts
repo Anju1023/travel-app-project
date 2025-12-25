@@ -43,6 +43,8 @@ export const PlanDataSchema = z.object({
   title: z.string(),
   days: z.array(DayPlanSchema),
   hotels: z.array(HotelSchema),
+  packingList: z.array(z.string()), // 持ち物リストを追加！🎒
+  advice: z.array(z.string()),     // 現地でのアドバイスを追加！💡
 });
 
 // スキーマから型を自動生成！
