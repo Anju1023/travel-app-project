@@ -117,3 +117,13 @@
 
 ## 現在のステータス: 🎉 全フェーズ完了！「Fuwari」として最高の旅の相棒に生まれ変わったよ！☁️✈️✨
 
+## Phase 11: コード品質の向上 & メンテナンス (更なる高みへ！🚀)
+
+- [x] 🧹 ESLint エラーの解消
+  - [x] `MapSection.tsx`: `require('leaflet')` を廃止し、より適切な動的初期化へ変更
+  - [x] `MapSection.tsx`: `useEffect` 内の同期的な `setState` による不要な再レンダリングを防止
+  - [x] `TravelForm.tsx`: `any` 型を適切な型定義に置き換え
+  - [x] `TravelForm.tsx`: 不要な変数 `progressWidth` の削除
+- [x] 🧪 動作確認 & ビルドチェック
+
+

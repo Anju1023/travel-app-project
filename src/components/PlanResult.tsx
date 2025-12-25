@@ -1,11 +1,18 @@
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { Repeat, Copy, Check } from 'lucide-react';
 import { PlanData } from '@/types/plan';
 import { convertPlanToMarkdown } from '@/utils/planToMarkdown';
 import TimelineSection from './TimelineSection';
 import HotelSection from './HotelSection';
-import MapSection from './MapSection';
 import AdviceSection from './AdviceSection';
+
+// MapSection を動的インポートするよ！
+// 地図はブラウザ側でのみ動いてほしいから SSR をオフにするね。
+const MapSection = dynamic(() => import('./MapSection'), { 
+  ssr: false,
+  loading: () => <div className="h-[400px] w-full bg-slate-50 rounded-[2rem] animate-pulse flex items-center justify-center text-slate-400">地図を読み込み中...🗺️</div>
+});
 
 /**
  * 旅行プランの生成結果を表示するコンポーネント

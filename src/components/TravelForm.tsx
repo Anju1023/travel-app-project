@@ -84,19 +84,17 @@ export default function TravelForm({
 
 	// ローディングアニメーション
 	useEffect(() => {
-		let timer: NodeJS.Timeout;
-		if (loading) {
-			timer = setInterval(() => {
-				setMessageIndex((prev) => (prev + 1) % LOADING_MESSAGES.length);
-			}, 2500);
-		} else {
-			setMessageIndex(0);
-		}
+		if (!loading) return;
+
+		const timer = setInterval(() => {
+			setMessageIndex((prev) => (prev + 1) % LOADING_MESSAGES.length);
+		}, 2500);
+
 		return () => clearInterval(timer);
 	}, [loading]);
 
 	// 入力値が変わった時の処理
-	const handleChange = (name: keyof TravelFormData, value: any) => {
+	const handleChange = <K extends keyof TravelFormData>(name: K, value: TravelFormData[K]) => {
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
@@ -125,10 +123,8 @@ export default function TravelForm({
 		setLoading(true);
 		await onSubmit(formData as TravelFormData);
 		setLoading(false);
+		setMessageIndex(0);
 	};
-
-	// 進捗バーの幅を計算
-	const progressWidth = ((step - 1) / (TOTAL_STEPS - 1)) * 100;
 
 	return (
 		<div className="w-full glass-card rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] relative">
