@@ -6,7 +6,7 @@ import { PlanData } from '@/types/plan';
  */
 export default function HotelSection({ hotels }: { hotels: PlanData['hotels'] }) {
   return (
-    <div className="glass-card p-6 md:p-8 rounded-[2rem] shadow-sm">
+    <div className="glass-card p-6 md:p-8 rounded-4xl shadow-sm">
       <h3 className="text-xl font-bold text-slate-700 mb-8 flex items-center gap-3">
         <div className="p-2 bg-indigo-50 rounded-xl text-indigo-400">
           <Hotel className="w-6 h-6" />
@@ -15,7 +15,7 @@ export default function HotelSection({ hotels }: { hotels: PlanData['hotels'] })
       </h3>
       <div className="grid grid-cols-1 gap-6">
         {hotels.map((hotel, i) => (
-          <div key={i} className="p-5 md:p-6 bg-white/40 rounded-[1.5rem] flex flex-col md:flex-row gap-6 items-start md:items-center justify-between hover:bg-white/80 transition-all duration-300 border border-transparent hover:border-indigo-100 hover:shadow-md group">
+          <div key={i} className="p-5 md:p-6 bg-white/40 rounded-3xl flex flex-col md:flex-row gap-6 items-start md:items-center justify-between hover:bg-white/80 transition-all duration-300 border border-transparent hover:border-indigo-100 hover:shadow-md group">
             <div className="space-y-4 flex-1">
               <div>
                 <h4 className="font-bold text-xl text-slate-800 tracking-tight">

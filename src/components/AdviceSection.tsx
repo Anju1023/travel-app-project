@@ -16,7 +16,7 @@ export default function AdviceSection({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       
       {/* 持ち物チェックリスト 🎒 */}
-      <div className="glass-card p-6 md:p-8 rounded-[2rem] shadow-sm">
+      <div className="glass-card p-6 md:p-8 rounded-4xl shadow-sm">
         <h3 className="text-xl font-bold text-slate-700 mb-6 flex items-center gap-3">
           <div className="p-2 bg-sky-100 rounded-xl text-sky-500">
             <Luggage className="w-6 h-6" />
@@ -37,7 +37,7 @@ export default function AdviceSection({
       </div>
 
       {/* 旅のアドバイス 💡 */}
-      <div className="glass-card p-6 md:p-8 rounded-[2rem] shadow-sm">
+      <div className="glass-card p-6 md:p-8 rounded-4xl shadow-sm">
         <h3 className="text-xl font-bold text-slate-700 mb-6 flex items-center gap-3">
           <div className="p-2 bg-amber-100 rounded-xl text-amber-500">
             <Lightbulb className="w-6 h-6" />

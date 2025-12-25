@@ -42,7 +42,7 @@ export default function MapSection({ plan }: { plan: PlanData }) {
     : [35.6812, 139.7671]; // スポットがない時は東京駅付近
 
   return (
-    <div className="glass-card p-4 md:p-6 rounded-[2rem] shadow-sm overflow-hidden">
+    <div className="glass-card p-4 md:p-6 rounded-4xl shadow-sm overflow-hidden">
       <h3 className="text-xl font-bold text-slate-700 mb-6 flex items-center gap-3">
         <div className="p-2 bg-sky-50 rounded-xl text-sky-400">
           <LucideMap className="w-6 h-6" />
@@ -50,7 +50,7 @@ export default function MapSection({ plan }: { plan: PlanData }) {
         旅のマップ
       </h3>
       
-      <div className="h-[350px] md:h-[450px] w-full rounded-[1.5rem] overflow-hidden border border-sky-50 z-0 shadow-inner">
+      <div className="h-[350px] md:h-[450px] w-full rounded-3xl overflow-hidden border border-sky-50 z-0 shadow-inner">
         <MapContainer 
           center={centerPos} 
           zoom={13} 

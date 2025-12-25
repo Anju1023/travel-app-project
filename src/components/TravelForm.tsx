@@ -127,7 +127,7 @@ export default function TravelForm({
 	};
 
 	return (
-		<div className="w-full glass-card rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] relative">
+		<div className="w-full glass-card rounded-5xl overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] relative">
 			
 			<form onSubmit={handleSubmit} className="p-6 md:p-10 space-y-8 relative z-10">
 				

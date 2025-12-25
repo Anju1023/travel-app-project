@@ -11,7 +11,7 @@ import AdviceSection from './AdviceSection';
 // 地図はブラウザ側でのみ動いてほしいから SSR をオフにするね。
 const MapSection = dynamic(() => import('./MapSection'), { 
   ssr: false,
-  loading: () => <div className="h-[400px] w-full bg-slate-50 rounded-[2rem] animate-pulse flex items-center justify-center text-slate-400">地図を読み込み中...🗺️</div>
+  loading: () => <div className="h-[400px] w-full bg-slate-50 rounded-4xl animate-pulse flex items-center justify-center text-slate-400">地図を読み込み中...🗺️</div>
 });
 
 /**
