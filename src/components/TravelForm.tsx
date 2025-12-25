@@ -9,6 +9,14 @@ import {
 	Heart,
 	Sparkles,
 	Luggage,
+	User,
+	Baby,
+	Coffee,
+	Footprints,
+	Utensils,
+	Landmark,
+	Compass,
+	Camera,
 } from 'lucide-react';
 import { TravelFormData } from '@/types/plan';
 
@@ -22,6 +30,24 @@ const LOADING_MESSAGES = [
 	'おすすめの宿泊先をピックアップ中...🏨',
 	'旅のしおりを執筆中...✍️',
 	'ワクワクする体験を詰め込み中...✨',
+];
+
+// 同行者の選択肢データ
+const COMPANION_OPTIONS = [
+	{ label: '一人旅', icon: User, color: 'bg-blue-50 text-blue-600' },
+	{ label: '友達', icon: Users, color: 'bg-green-50 text-green-600' },
+	{ label: 'カップル/夫婦', icon: Heart, color: 'bg-pink-50 text-pink-600' },
+	{ label: '家族', icon: Baby, color: 'bg-orange-50 text-orange-600' },
+];
+
+// 旅のスタイルの選択肢データ
+const STYLE_OPTIONS = [
+	{ label: 'のんびり', icon: Coffee, color: 'bg-amber-50 text-amber-600' },
+	{ label: 'アクティブ', icon: Footprints, color: 'bg-red-50 text-red-600' },
+	{ label: 'グルメ', icon: Utensils, color: 'bg-rose-50 text-rose-600' },
+	{ label: '観光名所', icon: Landmark, color: 'bg-indigo-50 text-indigo-600' },
+	{ label: '穴場スポット', icon: Compass, color: 'bg-teal-50 text-teal-600' },
+	{ label: '映え', icon: Camera, color: 'bg-purple-50 text-purple-600' },
 ];
 
 /**
@@ -156,55 +182,64 @@ export default function TravelForm({
 				</div>
 			</div>
 
-			{/* 同行者選択：ラジオボタンでおしゃれに選べるようにしたよ */}
+			{/* 同行者選択：アイコン付きのカード形式でおしゃれに！ */}
 			<div className="space-y-3">
 				<label className="flex items-center gap-2 text-lg font-bold text-foreground">
 					<Users className="text-primary" />
 					誰と行く？
 				</label>
-				<div className="flex flex-wrap gap-3">
-					{['一人旅', '友達', 'カップル/夫婦', '家族'].map((item) => (
-						<label key={item} className="cursor-pointer group">
+				<div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+					{COMPANION_OPTIONS.map((item) => (
+						<label key={item.label} className="cursor-pointer group">
 							<input
 								type="radio"
 								name="companions"
-								value={item}
+								value={item.label}
 								className="hidden peer"
-								defaultChecked={item === '友達'}
+								defaultChecked={item.label === '友達'}
 							/>
-							<span className="block px-6 py-3 rounded-full bg-accent/30 peer-checked:bg-primary peer-checked:text-white transition-all hover:bg-accent/50">
-								{item}
-							</span>
+							<div className={`
+								flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all h-full gap-2
+								bg-accent/10 border-transparent
+								peer-checked:bg-primary/5 peer-checked:border-primary peer-checked:shadow-md
+								hover:bg-accent/20
+							`}>
+								<div className={`p-2 rounded-xl ${item.color} group-hover:scale-110 transition-transform`}>
+									<item.icon className="w-6 h-6" />
+								</div>
+								<span className="text-sm font-bold text-center">{item.label}</span>
+							</div>
 						</label>
 					))}
 				</div>
 			</div>
 
-			{/* 旅のスタイル選択：複数選べるチェックボックス形式！ */}
+			{/* 旅のスタイル選択：アイコンカードのチェックボックス！ */}
 			<div className="space-y-3">
 				<label className="flex items-center gap-2 text-lg font-bold text-foreground">
 					<Heart className="text-primary" />
 					どんな旅にしたい？
 				</label>
-				<div className="flex flex-wrap gap-3">
-					{[
-						'のんびり',
-						'アクティブ',
-						'グルメ',
-						'観光名所',
-						'穴場スポット',
-						'映え',
-					].map((item) => (
-						<label key={item} className="cursor-pointer">
+				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+					{STYLE_OPTIONS.map((item) => (
+						<label key={item.label} className="cursor-pointer group">
 							<input
 								type="checkbox"
 								name="style"
-								value={item}
+								value={item.label}
 								className="hidden peer"
 							/>
-							<span className="block px-6 py-3 rounded-full bg-accent/30 peer-checked:bg-secondary peer-checked:text-secondary-foreground border-2 border-transparent peer-checked:border-primary/20 transition-all hover:bg-accent/50">
-								{item}
-							</span>
+							<div className={`
+								flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all h-full gap-2
+								bg-accent/10 border-transparent
+								peer-checked:bg-secondary/20 peer-checked:border-primary/40 peer-checked:shadow-md
+								hover:bg-accent/20
+							`}>
+								<div className={`p-2 rounded-xl ${item.color} group-hover:scale-110 transition-transform`}>
+									<item.icon className="w-6 h-6" />
+								</div>
+								<span className="text-sm font-bold text-center">{item.label}</span>
+							</div>
 						</label>
 					))}
 				</div>
