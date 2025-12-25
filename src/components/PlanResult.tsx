@@ -4,6 +4,7 @@ import { PlanData } from '@/types/plan';
 import { convertPlanToMarkdown } from '@/utils/planToMarkdown';
 import TimelineSection from './TimelineSection';
 import HotelSection from './HotelSection';
+import MapSection from './MapSection';
 
 /**
  * 旅行プランの生成結果を表示するコンポーネント
@@ -56,6 +57,9 @@ export default function PlanResult({ plan, onReset }: { plan: PlanData; onReset:
           </button>
         </div>
       </div>
+
+      {/* 旅のマップ 🗺️ */}
+      <MapSection plan={plan} />
 
       {/* 1日ごとのタイムライン（アコーディオン式） */}
       <TimelineSection days={plan.days} />

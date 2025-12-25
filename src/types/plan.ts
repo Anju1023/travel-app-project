@@ -17,6 +17,8 @@ const DayScheduleSchema = z.object({
   time: z.string(),
   place: z.string(),
   description: z.string(),
+  lat: z.number(), // 緯度を追加！📍
+  lng: z.number(), // 経度を追加！📍
 });
 
 // 1日のスキーマ
@@ -31,6 +33,8 @@ const HotelSchema = z.object({
   area: z.string(),
   price: z.string(),
   features: z.array(z.string()),
+  lat: z.number(), // ホテルの緯度📍
+  lng: z.number(), // ホテルの経度📍
 });
 
 // 全体のプランデータのスキーマ
