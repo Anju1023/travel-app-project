@@ -1,26 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Design System Colors */
+  --background: #FFFFFF;
+  --foreground: #37474F;
+  
+  --primary: #00BCD4;
+  --primary-foreground: #FFFFFF;
+  
+  --secondary: #E0F7FA;
+  --secondary-foreground: #006064;
+  
+  --accent: #E0F7FA;
+  
+  --muted: #F5F5F5;
+  --muted-foreground: #78909C;
+
+  /* Font settings (will be set in layout.tsx but referenced here if needed) */
 }
 
+/* Force light mode for now as per "Fresh/White" theme request */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Utilities if needed */
 @theme inline {
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

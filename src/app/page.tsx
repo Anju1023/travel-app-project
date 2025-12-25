@@ -1,65 +1,118 @@
-import Image from "next/image";
+'use client';
 
+import { useState } from 'react';
+import TravelForm from '@/components/TravelForm';
+import PlanResult from '@/components/PlanResult';
+import { PlanData, TravelFormData } from '@/types/plan';
+import { AlertCircle } from 'lucide-react'; // エラー用のアイコンを追加
+
+/**
+ * メインのページコンポーネント (Home)
+ * アプリの顔となる部分だよ！
+ * 入力フォームと生成結果の切り替え、APIとの通信をここで管理しているよ。
+ */
 export default function Home() {
+  // --- ステート（状態）の定義 ---
+  
+  // AIが作ってくれた旅行プランを保存する場所だよ
+  const [plan, setPlan] = useState<PlanData | null>(null);
+  
+  // 何かトラブルがあった時に、あんじゅに伝えるメッセージを保存するよ
+  const [error, setError] = useState<string | null>(null);
+
+  /**
+   * プラン作成ボタンが押された時のメイン処理
+   * @param data フォームから送られてきた旅行の条件
+   */
+  const handleCreatePlan = async (data: TravelFormData) => {
+    // 新しく作り直すから、前のエラーは消しておくね！
+    setError(null);
+    
+    try {
+      // 自作したAPI (/api/plan) に「こんなプラン作って！」ってお願いするよ
+      const response = await fetch('/api/plan', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      // もしAPIが「今は無理だよ〜」って言ってきたら（エラー）、その理由を教えてもらうよ
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || 'プランの生成に失敗しちゃいました...。');
+      }
+
+      // 成功！AIが作ってくれたプランを受け取るよ
+      const planData: PlanData = await response.json();
+      setPlan(planData);
+      
+    } catch (err: unknown) {
+      // 想定外のトラブルが起きた時のためのバックアップ
+      console.error('Frontend Error:', err);
+      
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('予期せぬエラーが発生しました。もう一度試してみてね！');
+      }
+    }
+  };
+
+  /**
+   * 「もう一度作る」ボタンが押された時の処理
+   * 画面をリセットして、最初のフォームに戻るよ！
+   */
+  const handleReset = () => {
+    setPlan(null);
+    setError(null);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex flex-col items-center gap-8 animate-in fade-in zoom-in duration-500">
+      
+      {/* 
+        まだプランがない時（最初の画面）に表示するヘッダーセクション 
+        あんじゅをワクワクさせるようなキャッチコピーにしているよ！
+      */}
+      {!plan && (
+        <div className="text-center space-y-4 py-8">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-foreground tracking-tight">
+            次は<span className="text-primary">どこ</span>に行く？
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-lg text-muted-foreground max-w-lg mx-auto">
+            最新の Gemini 3.0 が、今のあなたにぴったりの旅行プランを<br className="hidden md:inline"/>瞬時に提案します。✨
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      )}
+
+      {/* 
+        トラブル発生！エラーメッセージをおしゃれに表示するよ 
+        怖くないように、優しい水色と警告のオレンジを混ぜたデザインにしたよ。
+      */}
+      {error && (
+        <div className="w-full max-w-2xl p-6 bg-orange-50 text-orange-800 rounded-3xl border border-orange-200 shadow-sm flex items-start gap-4">
+          <AlertCircle className="w-6 h-6 shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <p className="font-bold text-lg">おっと、トラブル発生かな？</p>
+            <p className="text-sm opacity-90">{error}</p>
+          </div>
         </div>
-      </main>
+      )}
+
+      {/* 
+        メインコンテンツエリア
+        プランがあれば「結果画面」、なければ「入力フォーム」を出すように切り替えてるよ！
+      */}
+      <div className="w-full max-w-3xl mb-12">
+        {plan ? (
+          <PlanResult plan={plan} onReset={handleReset} />
+        ) : (
+          <TravelForm onSubmit={handleCreatePlan} />
+        )}
+      </div>
+
     </div>
   );
 }
