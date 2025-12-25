@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
 	MapPin,
 	Calendar,
@@ -11,6 +11,18 @@ import {
 	Luggage,
 } from 'lucide-react';
 import { TravelFormData } from '@/types/plan';
+
+// ローディング中に表示する「実況メッセージ」のリストだよ！
+const LOADING_MESSAGES = [
+	'最高のプランを考え中...',
+	'現地の美味しいカフェを探しています...☕️',
+	'映えスポットを厳選中...📸',
+	'移動ルートを計算しています...🗺️',
+	'地元の隠れ家スポットを調査中...🤫',
+	'おすすめの宿泊先をピックアップ中...🏨',
+	'旅のしおりを執筆中...✍️',
+	'ワクワクする体験を詰め込み中...✨',
+];
 
 /**
  * 旅行の条件を入力するためのフォームコンポーネント
@@ -23,6 +35,21 @@ export default function TravelForm({
 }) {
 	// 通信中（プラン考え中）かどうかを管理するステートだよ
 	const [loading, setLoading] = useState(false);
+	// ローディング中に表示するメッセージのインデックス
+	const [messageIndex, setMessageIndex] = useState(0);
+
+	// ローディング中にメッセージをパラパラ切り替えるためのタイマー設定！
+	useEffect(() => {
+		let timer: NodeJS.Timeout;
+		if (loading) {
+			timer = setInterval(() => {
+				setMessageIndex((prev) => (prev + 1) % LOADING_MESSAGES.length);
+			}, 2500); // 2.5秒ごとに切り替えるよ
+		} else {
+			setMessageIndex(0); // 終わったら最初に戻しておくね
+		}
+		return () => clearInterval(timer);
+	}, [loading]);
 
 	/**
 	 * フォームの「プランを作る」ボタンが押された時の処理
@@ -198,18 +225,17 @@ export default function TravelForm({
 
 			{/* 
         運命の生成ボタン！
-        ローディング中はカバンが揺れる（予定）の可愛いアニメーションになるよ 
+        ローディング中はメッセージがパラパラ変わって、カバンが弾むよ 👜✨
       */}
 			<button
 				type="submit"
 				disabled={loading}
-				className="w-full py-5 rounded-2xl bg-linear-to-r from-primary to-cyan-400 text-white font-bold text-xl shadow-lg shadow-primary/30 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+				className="w-full py-5 rounded-2xl bg-linear-to-r from-primary to-cyan-400 text-white font-bold text-xl shadow-lg shadow-primary/30 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
 			>
 				{loading ? (
 					<>
-						<Luggage className="animate-bounce" />{' '}
-						{/* カバンが弾むアニメーション！ */}
-						最高のプランを考え中...
+						<Luggage className="animate-bounce" />
+						<span className="animate-pulse">{LOADING_MESSAGES[messageIndex]}</span>
 					</>
 				) : (
 					<>
