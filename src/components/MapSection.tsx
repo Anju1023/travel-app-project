@@ -72,7 +72,17 @@ export default function MapSection({ plan }: { plan: PlanData }) {
             <Marker key={i} position={[spot.lat, spot.lng]}>
               <Popup>
                 <div className="text-center p-1">
-                  <div className="font-bold text-sm mb-1">{spot.place}</div>
+                  <div className="font-bold text-sm mb-1">
+                    {/* ポップアップの中の文字もリンクにしたよ！🔗 */}
+                    <a
+                      href={`https://www.google.com/search?q=${encodeURIComponent(spot.place)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline hover:text-primary/80 transition-colors"
+                    >
+                      {spot.place}
+                    </a>
+                  </div>
                   <div className="text-xs text-muted-foreground">
                     {spot.type === 'hotel' ? '🏨 宿泊先' : '📍 スポット'}
                   </div>
