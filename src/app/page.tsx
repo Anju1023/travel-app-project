@@ -48,6 +48,9 @@ export default function Home() {
       const planData: PlanData = await response.json();
       setPlan(planData);
       
+      // 画面の一番上までスクロールして、結果を見やすくするよ！✨
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
     } catch (err: unknown) {
       // 想定外のトラブルが起きた時のためのバックアップ
       console.error('Frontend Error:', err);
@@ -67,6 +70,9 @@ export default function Home() {
   const handleReset = () => {
     setPlan(null);
     setError(null);
+    
+    // フォームに戻った時も上までスクロール！
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

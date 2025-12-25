@@ -4,18 +4,20 @@ Gemini 3.0 Flash を活用した、おしゃれでスマートな旅行プラン
 あんじゅと一緒に作り上げました！
 
 ## 🔗 リンク
+
 - **GitHub Repository**: https://github.com/Anju1023/travel-app-project
-- **Live Demo (Vercel)**: [VercelのURLをここに貼ってね！]
+- **Live Demo (Vercel)**: https://vercel.com/anjus-projects-ee5add78/travel-app-project
 
 ## ✅ 達成した機能
-- **AIプラン生成**: 最新の Gemini 3.0 Flash (preview) を使用
+
+- **AI プラン生成**: 最新の Gemini 3.0 Flash (preview) を使用
 - **詳細な条件設定**: 行き先、日程、予算、同行者に加え、「旅行時期」や「こだわり条件」も考慮
-- **Markdown形式でのコピー**: 生成したプランをNotionやSlackにサッと共有できる「旅のメモ」機能を搭載！✨
+- **Markdown 形式でのコピー**: 生成したプランを Notion や Slack にサッと共有できる「旅のメモ」機能を搭載！✨
 - **UI/UX**:
   - 白と水色を基調とした爽やかでモダンなデザイン
   - スマホ完全対応 (レスポンシブ) ＆ アコーディオン表示で長い旅程もスッキリ！📱
-  - 楽しいローディングアニメーション（弾むカバン💼）と親しみやすいエラー表示
-- **堅牢な設計**: 
+  - 楽しいローディングアニメーション（弾むカバン 💼）と親しみやすいエラー表示
+- **堅牢な設計**:
   - Zod を使った AI レスポンスの厳格なバリデーション（防御力アップ！🛡️）
   - メンテナンスしやすいコンポーネント分割
 - **開発環境**: Next.js 16.1, TypeScript, Tailwind CSS v4
