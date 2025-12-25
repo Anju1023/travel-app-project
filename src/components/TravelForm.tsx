@@ -323,6 +323,7 @@ export default function TravelForm({
 				<div className="flex gap-4 pt-4">
 					{step > 1 && (
 						<button
+							key="btn-prev"
 							type="button"
 							onClick={prevStep}
 							disabled={loading}
@@ -335,6 +336,7 @@ export default function TravelForm({
 					
 					{step < TOTAL_STEPS ? (
 						<button
+							key="btn-next"
 							type="button"
 							onClick={nextStep}
 							disabled={!formData.destination && step === 1} // 行き先未入力なら進めない
@@ -345,6 +347,7 @@ export default function TravelForm({
 						</button>
 					) : (
 						<button
+							key="btn-submit"
 							type="submit"
 							disabled={loading}
 							className="flex-[2] py-4 rounded-2xl bg-linear-to-r from-primary to-cyan-400 text-white font-bold shadow-lg shadow-primary/30 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
