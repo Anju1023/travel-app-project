@@ -49,19 +49,21 @@ export default function MapSection({ plan }: { plan: PlanData }) {
     : [35.6812, 139.7671]; // スポットがない時は東京駅付近
 
   return (
-    <div className="bg-white p-4 rounded-3xl shadow-sm border border-secondary/50 overflow-hidden">
-      <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-        <LucideMap className="text-primary" />
-        旅のマップ 🗺️
+    <div className="glass-card p-4 md:p-6 rounded-[2rem] shadow-sm overflow-hidden">
+      <h3 className="text-xl font-bold text-slate-700 mb-6 flex items-center gap-3">
+        <div className="p-2 bg-sky-50 rounded-xl text-sky-400">
+          <LucideMap className="w-6 h-6" />
+        </div>
+        旅のマップ
       </h3>
       
-      <div className="h-[300 md:h-[400px]] w-full rounded-2xl overflow-hidden border border-secondary z-0">
+      <div className="h-[350px] md:h-[450px] w-full rounded-[1.5rem] overflow-hidden border border-sky-50 z-0 shadow-inner">
         <MapContainer 
           center={centerPos} 
           zoom={13} 
           scrollWheelZoom={false} 
           className="h-full w-full"
-          style={{ height: '400px', width: '100%' }}
+          style={{ height: '100%', width: '100%' }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -71,20 +73,20 @@ export default function MapSection({ plan }: { plan: PlanData }) {
           {allSpots.map((spot, i) => (
             <Marker key={i} position={[spot.lat, spot.lng]}>
               <Popup>
-                <div className="text-center p-1">
+                <div className="text-center p-1 font-sans">
                   <div className="font-bold text-sm mb-1">
                     {/* ポップアップの中の文字もリンクにしたよ！🔗 */}
                     <a
                       href={`https://www.google.com/search?q=${encodeURIComponent(spot.place)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary hover:underline hover:text-primary/80 transition-colors"
+                      className="text-sky-500 hover:text-sky-600 hover:underline transition-all"
                     >
                       {spot.place}
                     </a>
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    {spot.type === 'hotel' ? '🏨 宿泊先' : '📍 スポット'}
+                  <div className="text-[10px] font-bold text-slate-400 tracking-wider">
+                    {spot.type === 'hotel' ? '🏨 HOTEL' : '📍 SPOT'}
                   </div>
                 </div>
               </Popup>
@@ -92,7 +94,7 @@ export default function MapSection({ plan }: { plan: PlanData }) {
           ))}
         </MapContainer>
       </div>
-      <p className="text-xs text-muted-foreground mt-3 text-center">
+      <p className="text-xs font-medium text-slate-400 mt-4 text-center italic opacity-80">
         ピンをタップすると場所の名前が見れるよ！📍
       </p>
     </div>

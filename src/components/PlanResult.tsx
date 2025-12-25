@@ -32,29 +32,31 @@ export default function PlanResult({ plan, onReset }: { plan: PlanData; onReset:
   };
 
   return (
-    <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-700">
+    <div className="space-y-12 animate-in slide-in-from-bottom-8 duration-1000">
       
       {/* 
         プランのタイトル & コピー機能
       */}
-      <div className="text-center space-y-4">
-        <div className="space-y-2">
-          <h2 className="text-3xl font-bold text-primary">{plan.title}</h2>
-          <p className="text-muted-foreground font-medium">こんなプランはいかがですか？✨</p>
+      <div className="text-center space-y-6">
+        <div className="space-y-3">
+          <h2 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight leading-tight text-balance">
+            {plan.title}
+          </h2>
+          <p className="text-slate-500 font-medium opacity-80">こんなプランはいかがですか？✨</p>
         </div>
         
         <div className="flex justify-center">
           <button
             onClick={handleCopy}
             className={`
-              flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm
+              flex items-center gap-2 px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 shadow-lg
               ${copied 
-                ? 'bg-green-500 text-white scale-105' 
-                : 'bg-white text-primary border-2 border-primary/20 hover:border-primary hover:bg-primary/5'}
+                ? 'bg-emerald-500 text-white scale-105 shadow-emerald-200' 
+                : 'bg-white/80 backdrop-blur-sm text-sky-500 border border-sky-100 hover:border-sky-300 hover:bg-white hover:scale-[1.02] shadow-sky-100'}
             `}
           >
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-            {copied ? 'コピー完了！' : 'Markdown形式でコピー'}
+            {copied ? 'コピーしたよ！' : '旅のメモをコピー'}
           </button>
         </div>
       </div>
@@ -72,12 +74,12 @@ export default function PlanResult({ plan, onReset }: { plan: PlanData; onReset:
       <AdviceSection packingList={plan.packingList} advice={plan.advice} />
 
       {/* リセットボタン */}
-      <div className="flex justify-center pt-8 pb-12">
+      <div className="flex justify-center pt-8 pb-16">
         <button 
           onClick={onReset}
-          className="flex items-center gap-2 px-8 py-4 rounded-full bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground transition-all font-bold shadow-sm"
+          className="flex items-center gap-2 px-10 py-4 rounded-full bg-white/50 backdrop-blur-sm text-slate-400 hover:text-sky-500 hover:bg-white border border-slate-100 hover:border-sky-200 transition-all duration-300 font-bold shadow-sm group"
         >
-          <Repeat className="w-5 h-5" />
+          <Repeat className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
           条件を変えてもう一度作る
         </button>
       </div>
