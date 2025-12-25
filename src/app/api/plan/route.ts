@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextResponse } from 'next/server';
-import { TravelFormData } from '@/types/plan';
+import { TravelFormData, PlanDataSchema } from '@/types/plan';
+import { z, ZodError } from 'zod';
 
 // Google Generative AI SDKを初期化するよ！
 // APIキーは安全のために .env.local に隠してあるの。process.env で呼び出すよ。
@@ -50,6 +51,7 @@ export async function POST(request: Request) {
 - シーズンによる混雑具合やホテルの価格傾向のアドバイス（説明文の中に含める）
 
 ## 出力フォーマット (JSON)
+以下のJSON構造を厳守してください：
 {
   "title": "プランの魅力的なタイトル（季節感を入れて）",
   "days": [
@@ -104,17 +106,35 @@ export async function POST(request: Request) {
      */
     text = text.replace(/^```(json)?\n/, '').replace(/\n```$/, '');
 
-    // 綺麗になったテキストを、プログラムで扱いやすい「オブジェクト」に変換するよ
-    const planData = JSON.parse(text);
+    // まずは単純にJSONとしてパースできるかチェック
+    let rawData;
+    try {
+      rawData = JSON.parse(text);
+    } catch {
+      throw new Error('AIが生成したデータが壊れていたみたい...。もう一回試してみて！');
+    }
+
+    // ここでZod先生の登場！データの中身が正しいか厳しくチェックしてもらうよ🛡️
+    const planData = PlanDataSchema.parse(rawData);
 
     // 最後に、完成したプランをあんじゅの画面に送り返すよ！
     return NextResponse.json(planData);
 
   } catch (error: unknown) {
-    // もし途中でこけちゃったら、エラーログを出してあんじゅに報告するね
     console.error('API Error:', error);
+
+    // Zodのチェックで引っかかった場合のエラー処理
+    if (error instanceof ZodError) {
+       // eslint-disable-next-line @typescript-eslint/no-explicit-any
+       console.error('Validation Error Details:', (error as any).errors);
+       return NextResponse.json(
+        { error: '生成されたプランデータの形がおかしいみたい。ごめんね、もう一度試してくれる？' },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { error: '旅行プランの生成中にエラーが発生しました。時間を置いて試してみてね！' },
+      { error: (error as Error).message || '旅行プランの生成中にエラーが発生しました。時間を置いて試してみてね！' },
       { status: 500 }
     );
   }
