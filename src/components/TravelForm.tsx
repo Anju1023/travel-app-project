@@ -116,6 +116,11 @@ export default function TravelForm({
 	// 最後の送信処理
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		
+		// 最後のステップじゃなかったら送信しない！
+		// これでEnterキー連打による誤送信を防ぐよ🛡️
+		if (step < TOTAL_STEPS) return;
+
 		setLoading(true);
 		await onSubmit(formData as TravelFormData);
 		setLoading(false);
