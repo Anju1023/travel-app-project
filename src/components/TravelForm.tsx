@@ -17,6 +17,9 @@ import {
 	Landmark,
 	Compass,
 	Camera,
+	ArrowRight,
+	ArrowLeft,
+	CheckCircle2,
 } from 'lucide-react';
 import { TravelFormData } from '@/types/plan';
 
@@ -52,233 +55,310 @@ const STYLE_OPTIONS = [
 
 /**
  * 旅行の条件を入力するためのフォームコンポーネント
- * ここで集めたデータをAPIに送って、プランを作ってもらうんだよ！
+ * ステップ形式でサクサク入力できるよ！📱✨
  */
 export default function TravelForm({
 	onSubmit,
 }: {
 	onSubmit: (data: TravelFormData) => Promise<void>;
 }) {
-	// 通信中（プラン考え中）かどうかを管理するステートだよ
 	const [loading, setLoading] = useState(false);
-	// ローディング中に表示するメッセージのインデックス
 	const [messageIndex, setMessageIndex] = useState(0);
 
-	// ローディング中にメッセージをパラパラ切り替えるためのタイマー設定！
+	// ステップ管理用のステート (1〜5)
+	const [step, setStep] = useState(1);
+	const TOTAL_STEPS = 5;
+
+	// フォームの入力値を管理するステート
+	// ステップをまたいで値を保持するために必要だよ！
+	const [formData, setFormData] = useState<Partial<TravelFormData>>({
+		destination: '',
+		duration: '1泊2日',
+		timing: '',
+		budget: 'そこそこ（普通）',
+		companions: '友達',
+		style: [],
+		freeText: '',
+	});
+
+	// ローディングアニメーション
 	useEffect(() => {
 		let timer: NodeJS.Timeout;
 		if (loading) {
 			timer = setInterval(() => {
 				setMessageIndex((prev) => (prev + 1) % LOADING_MESSAGES.length);
-			}, 2500); // 2.5秒ごとに切り替えるよ
+			}, 2500);
 		} else {
-			setMessageIndex(0); // 終わったら最初に戻しておくね
+			setMessageIndex(0);
 		}
 		return () => clearInterval(timer);
 	}, [loading]);
 
-	/**
-	 * フォームの「プランを作る」ボタンが押された時の処理
-	 */
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault(); // ページがリロードされないようにストップ！
-		setLoading(true); // ローディング開始！
-
-		// フォームに入力された値をまるっと取得するよ
-		const formData = new FormData(e.currentTarget);
-		const data: TravelFormData = {
-			destination: formData.get('destination') as string,
-			duration: formData.get('duration') as string,
-			timing: formData.get('timing') as string, // 時期の情報もゲット！
-			budget: formData.get('budget') as string,
-			companions: formData.get('companions') as string,
-			style: formData.getAll('style') as string[],
-			freeText: formData.get('freeText') as string, // あんじゅのこだわり条件もしっかりキャッチ！
-		};
-
-		// 親コンポーネント（Home）にデータを渡して、APIを叩いてもらうよ
-		await onSubmit(data);
-		setLoading(false); // 終わったらローディング解除！
+	// 入力値が変わった時の処理
+	const handleChange = (name: keyof TravelFormData, value: any) => {
+		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
+	// スタイルのチェックボックス用
+	const handleStyleChange = (styleLabel: string) => {
+		const currentStyles = formData.style || [];
+		const newStyles = currentStyles.includes(styleLabel)
+			? currentStyles.filter((s) => s !== styleLabel)
+			: [...currentStyles, styleLabel];
+		handleChange('style', newStyles);
+	};
+
+	// 次のステップへ
+	const nextStep = () => setStep((prev) => Math.min(prev + 1, TOTAL_STEPS));
+	// 前のステップへ
+	const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
+
+	// 最後の送信処理
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		setLoading(true);
+		await onSubmit(formData as TravelFormData);
+		setLoading(false);
+	};
+
+	// 進捗バーの幅を計算
+	const progressWidth = ((step - 1) / (TOTAL_STEPS - 1)) * 100;
+
 	return (
-		<form
-			onSubmit={handleSubmit}
-			className="w-full space-y-8 bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-secondary/50"
-		>
-			{/* 行き先入力：どこに行きたいか自由に書いてもらうよ */}
-			<div className="space-y-3">
-				<label className="flex items-center gap-2 text-lg font-bold text-foreground">
-					<MapPin className="text-primary" />
-					どこに行きたい？
-				</label>
-				<input
-					type="text"
-					name="destination"
-					placeholder="例：京都、フランス、沖縄..."
-					className="w-full p-4 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none text-lg"
-					required
+		<div className="w-full bg-white rounded-3xl shadow-lg border border-secondary/50 overflow-hidden">
+			{/* プログレスバー */}
+			<div className="w-full h-2 bg-secondary/30">
+				<div 
+					className="h-full bg-primary transition-all duration-500 ease-out"
+					style={{ width: `${progressWidth}%` }}
 				/>
 			</div>
 
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-				{/* 日数選択：プルダウンで選べるようにして入力を楽に！ */}
-				<div className="space-y-3">
-					<label className="flex items-center gap-2 text-lg font-bold text-foreground">
-						<Calendar className="text-primary" />
-						何泊する？
-					</label>
-					<div className="relative">
-						<select
-							name="duration"
-							className="w-full p-4 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none appearance-none cursor-pointer"
-						>
-							<option>日帰り</option>
-							<option>1泊2日</option>
-							<option>2泊3日</option>
-							<option>3泊4日</option>
-							<option>4泊5日以上</option>
-						</select>
-						<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
-							▼
+			<form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-8">
+				
+				{/* ステップ1: 行き先 */}
+				{step === 1 && (
+					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
+						<div className="text-center space-y-2">
+							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">STEP 1</span>
+							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
+								<MapPin className="text-primary w-8 h-8" />
+								どこに行きたい？
+							</h3>
+						</div>
+						<input
+							type="text"
+							value={formData.destination}
+							onChange={(e) => handleChange('destination', e.target.value)}
+							placeholder="例：京都、フランス、沖縄..."
+							className="w-full p-6 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none text-xl text-center placeholder:text-muted-foreground/50"
+							autoFocus
+						/>
+					</div>
+				)}
+
+				{/* ステップ2: 日程・時期 */}
+				{step === 2 && (
+					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
+						<div className="text-center space-y-2">
+							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">STEP 2</span>
+							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
+								<Calendar className="text-primary w-8 h-8" />
+								いつ、どれくらい？
+							</h3>
+						</div>
+						
+						<div className="space-y-4">
+							<div className="space-y-2">
+								<label className="font-bold text-muted-foreground ml-2">何泊する？</label>
+								<div className="relative">
+									<select
+										value={formData.duration}
+										onChange={(e) => handleChange('duration', e.target.value)}
+										className="w-full p-4 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none appearance-none cursor-pointer text-lg"
+									>
+										<option>日帰り</option>
+										<option>1泊2日</option>
+										<option>2泊3日</option>
+										<option>3泊4日</option>
+										<option>4泊5日以上</option>
+									</select>
+									<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">▼</div>
+								</div>
+							</div>
+
+							<div className="space-y-2">
+								<label className="font-bold text-muted-foreground ml-2">いつ頃行く？</label>
+								<input
+									type="text"
+									value={formData.timing}
+									onChange={(e) => handleChange('timing', e.target.value)}
+									placeholder="例：10月下旬、GW、来年の夏..."
+									className="w-full p-4 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none text-lg"
+								/>
+							</div>
 						</div>
 					</div>
-				</div>
-
-				{/* 時期入力：いつ行くかを追加！ */}
-				<div className="space-y-3">
-					<label className="flex items-center gap-2 text-lg font-bold text-foreground">
-						<Calendar className="text-primary" />
-						いつ頃行く？
-					</label>
-					<input
-						type="text"
-						name="timing"
-						placeholder="例：10月下旬、GW、来年の夏..."
-						className="w-full p-4 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none"
-					/>
-				</div>
-			</div>
-
-			{/* 予算選択：ざっくりした予算感を聞くよ */}
-			<div className="space-y-3">
-				<label className="flex items-center gap-2 text-lg font-bold text-foreground">
-					<Wallet className="text-primary" />
-					予算はどれくらい？
-				</label>
-				<div className="relative">
-					<select
-						name="budget"
-						className="w-full p-4 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none appearance-none cursor-pointer"
-					>
-						<option>なるべく安く</option>
-						<option>そこそこ（普通）</option>
-						<option>ちょっと贅沢</option>
-						<option>お金に糸目はつけない</option>
-					</select>
-					<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
-						▼
-					</div>
-				</div>
-			</div>
-
-			{/* 同行者選択：アイコン付きのカード形式でおしゃれに！ */}
-			<div className="space-y-3">
-				<label className="flex items-center gap-2 text-lg font-bold text-foreground">
-					<Users className="text-primary" />
-					誰と行く？
-				</label>
-				<div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-					{COMPANION_OPTIONS.map((item) => (
-						<label key={item.label} className="cursor-pointer group">
-							<input
-								type="radio"
-								name="companions"
-								value={item.label}
-								className="hidden peer"
-								defaultChecked={item.label === '友達'}
-							/>
-							<div className={`
-								flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all h-full gap-2
-								bg-accent/10 border-transparent
-								peer-checked:bg-primary/5 peer-checked:border-primary peer-checked:shadow-md
-								hover:bg-accent/20
-							`}>
-								<div className={`p-2 rounded-xl ${item.color} group-hover:scale-110 transition-transform`}>
-									<item.icon className="w-6 h-6" />
-								</div>
-								<span className="text-sm font-bold text-center">{item.label}</span>
-							</div>
-						</label>
-					))}
-				</div>
-			</div>
-
-			{/* 旅のスタイル選択：アイコンカードのチェックボックス！ */}
-			<div className="space-y-3">
-				<label className="flex items-center gap-2 text-lg font-bold text-foreground">
-					<Heart className="text-primary" />
-					どんな旅にしたい？
-				</label>
-				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-					{STYLE_OPTIONS.map((item) => (
-						<label key={item.label} className="cursor-pointer group">
-							<input
-								type="checkbox"
-								name="style"
-								value={item.label}
-								className="hidden peer"
-							/>
-							<div className={`
-								flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all h-full gap-2
-								bg-accent/10 border-transparent
-								peer-checked:bg-secondary/20 peer-checked:border-primary/40 peer-checked:shadow-md
-								hover:bg-accent/20
-							`}>
-								<div className={`p-2 rounded-xl ${item.color} group-hover:scale-110 transition-transform`}>
-									<item.icon className="w-6 h-6" />
-								</div>
-								<span className="text-sm font-bold text-center">{item.label}</span>
-							</div>
-						</label>
-					))}
-				</div>
-			</div>
-
-			{/* こだわり条件：自由入力欄だよ！ */}
-			<div className="space-y-3">
-				<label className="flex items-center gap-2 text-lg font-bold text-foreground">
-					<Sparkles className="text-primary" />
-					こだわり条件はある？（任意）
-				</label>
-				<textarea
-					name="freeText"
-					placeholder="例：海が見えるカフェに行きたい、歴史的な建物を中心に回りたい..."
-					className="w-full p-4 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none min-h-25 resize-none"
-				/>
-			</div>
-
-			{/* 
-        運命の生成ボタン！
-        ローディング中はメッセージがパラパラ変わって、カバンが弾むよ 👜✨
-      */}
-			<button
-				type="submit"
-				disabled={loading}
-				className="w-full py-5 rounded-2xl bg-linear-to-r from-primary to-cyan-400 text-white font-bold text-xl shadow-lg shadow-primary/30 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
-			>
-				{loading ? (
-					<>
-						<Luggage className="animate-bounce" />
-						<span className="animate-pulse">{LOADING_MESSAGES[messageIndex]}</span>
-					</>
-				) : (
-					<>
-						<Sparkles className="animate-pulse" />
-						プランを作ってもらう！
-					</>
 				)}
-			</button>
-		</form>
+
+				{/* ステップ3: 予算・同行者 */}
+				{step === 3 && (
+					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
+						<div className="text-center space-y-2">
+							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">STEP 3</span>
+							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
+								<Wallet className="text-primary w-8 h-8" />
+								予算とメンバーは？
+							</h3>
+						</div>
+
+						<div className="space-y-6">
+							<div className="space-y-2">
+								<label className="font-bold text-muted-foreground ml-2">予算感</label>
+								<div className="relative">
+									<select
+										value={formData.budget}
+										onChange={(e) => handleChange('budget', e.target.value)}
+										className="w-full p-4 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none appearance-none cursor-pointer text-lg"
+									>
+										<option>なるべく安く</option>
+										<option>そこそこ（普通）</option>
+										<option>ちょっと贅沢</option>
+										<option>お金に糸目はつけない</option>
+									</select>
+									<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">▼</div>
+								</div>
+							</div>
+
+							<div className="space-y-2">
+								<label className="font-bold text-muted-foreground ml-2">誰と行く？</label>
+								<div className="grid grid-cols-2 gap-3">
+									{COMPANION_OPTIONS.map((item) => (
+										<div 
+											key={item.label}
+											onClick={() => handleChange('companions', item.label)}
+											className={`
+												cursor-pointer flex items-center gap-3 p-4 rounded-2xl border-2 transition-all
+												${formData.companions === item.label 
+													? 'bg-primary/10 border-primary shadow-sm' 
+													: 'bg-accent/10 border-transparent hover:bg-accent/20'}
+											`}
+										>
+											<div className={`p-2 rounded-xl ${item.color}`}>
+												<item.icon className="w-5 h-5" />
+											</div>
+											<span className="font-bold text-sm">{item.label}</span>
+											{formData.companions === item.label && <CheckCircle2 className="w-5 h-5 text-primary ml-auto" />}
+										</div>
+									))}
+								</div>
+							</div>
+						</div>
+					</div>
+				)}
+
+				{/* ステップ4: 旅のスタイル */}
+				{step === 4 && (
+					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
+						<div className="text-center space-y-2">
+							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">STEP 4</span>
+							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
+								<Heart className="text-primary w-8 h-8" />
+								どんな旅にしたい？
+							</h3>
+							<p className="text-muted-foreground text-sm">複数選んでね！</p>
+						</div>
+
+						<div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+							{STYLE_OPTIONS.map((item) => {
+								const isSelected = formData.style?.includes(item.label);
+								return (
+									<div 
+										key={item.label}
+										onClick={() => handleStyleChange(item.label)}
+										className={`
+											cursor-pointer flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all gap-2 text-center h-32
+											${isSelected
+												? 'bg-secondary/30 border-primary/50 shadow-sm' 
+												: 'bg-accent/10 border-transparent hover:bg-accent/20'}
+										`}
+									>
+										<div className={`p-3 rounded-full ${item.color} ${isSelected ? 'scale-110' : ''} transition-transform`}>
+											<item.icon className="w-6 h-6" />
+										</div>
+										<span className="font-bold text-sm">{item.label}</span>
+									</div>
+								);
+							})}
+						</div>
+					</div>
+				)}
+
+				{/* ステップ5: こだわり条件 */}
+				{step === 5 && (
+					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
+						<div className="text-center space-y-2">
+							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">STEP 5</span>
+							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
+								<Sparkles className="text-primary w-8 h-8" />
+								最後にこだわりを教えて！
+							</h3>
+						</div>
+						<textarea
+							value={formData.freeText}
+							onChange={(e) => handleChange('freeText', e.target.value)}
+							placeholder="例：海が見えるカフェに行きたい、歴史的な建物を中心に回りたい..."
+							className="w-full p-6 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none min-h-40 resize-none text-lg"
+							autoFocus
+						/>
+					</div>
+				)}
+
+				{/* ナビゲーションボタン */}
+				<div className="flex gap-4 pt-4">
+					{step > 1 && (
+						<button
+							type="button"
+							onClick={prevStep}
+							disabled={loading}
+							className="flex-1 py-4 rounded-2xl bg-muted text-muted-foreground font-bold hover:bg-muted/80 transition-all flex items-center justify-center gap-2"
+						>
+							<ArrowLeft className="w-5 h-5" />
+							戻る
+						</button>
+					)}
+					
+					{step < TOTAL_STEPS ? (
+						<button
+							type="button"
+							onClick={nextStep}
+							disabled={!formData.destination && step === 1} // 行き先未入力なら進めない
+							className="flex-[2] py-4 rounded-2xl bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+						>
+							次へ
+							<ArrowRight className="w-5 h-5" />
+						</button>
+					) : (
+						<button
+							type="submit"
+							disabled={loading}
+							className="flex-[2] py-4 rounded-2xl bg-linear-to-r from-primary to-cyan-400 text-white font-bold shadow-lg shadow-primary/30 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+						>
+							{loading ? (
+								<>
+									<Luggage className="animate-bounce" />
+									<span className="animate-pulse">{LOADING_MESSAGES[messageIndex]}</span>
+								</>
+							) : (
+								<>
+									<Sparkles className="animate-pulse" />
+									プランを作成！
+								</>
+							)}
+						</button>
+					)}
+				</div>
+			</form>
+		</div>
 	);
 }
