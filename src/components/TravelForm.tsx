@@ -116,7 +116,7 @@ export default function TravelForm({
 	// 最後の送信処理
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		
+
 		// 最後のステップじゃなかったら送信しない！
 		// これでEnterキー連打による誤送信を防ぐよ🛡️
 		if (step < TOTAL_STEPS) return;
@@ -133,19 +133,20 @@ export default function TravelForm({
 		<div className="w-full bg-white rounded-3xl shadow-lg border border-secondary/50 overflow-hidden">
 			{/* プログレスバー */}
 			<div className="w-full h-2 bg-secondary/30">
-				<div 
+				<div
 					className="h-full bg-primary transition-all duration-500 ease-out"
 					style={{ width: `${progressWidth}%` }}
 				/>
 			</div>
 
 			<form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-8">
-				
 				{/* ステップ1: 行き先 */}
 				{step === 1 && (
 					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
 						<div className="text-center space-y-2">
-							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">STEP 1</span>
+							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
+								STEP 1
+							</span>
 							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
 								<MapPin className="text-primary w-8 h-8" />
 								どこに行きたい？
@@ -166,16 +167,20 @@ export default function TravelForm({
 				{step === 2 && (
 					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
 						<div className="text-center space-y-2">
-							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">STEP 2</span>
+							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
+								STEP 2
+							</span>
 							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
 								<Calendar className="text-primary w-8 h-8" />
 								いつ、どれくらい？
 							</h3>
 						</div>
-						
+
 						<div className="space-y-4">
 							<div className="space-y-2">
-								<label className="font-bold text-muted-foreground ml-2">何泊する？</label>
+								<label className="font-bold text-muted-foreground ml-2">
+									何泊する？
+								</label>
 								<div className="relative">
 									<select
 										value={formData.duration}
@@ -188,12 +193,16 @@ export default function TravelForm({
 										<option>3泊4日</option>
 										<option>4泊5日以上</option>
 									</select>
-									<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">▼</div>
+									<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
+										▼
+									</div>
 								</div>
 							</div>
 
 							<div className="space-y-2">
-								<label className="font-bold text-muted-foreground ml-2">いつ頃行く？</label>
+								<label className="font-bold text-muted-foreground ml-2">
+									いつ頃行く？
+								</label>
 								<input
 									type="text"
 									value={formData.timing}
@@ -210,7 +219,9 @@ export default function TravelForm({
 				{step === 3 && (
 					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
 						<div className="text-center space-y-2">
-							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">STEP 3</span>
+							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
+								STEP 3
+							</span>
 							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
 								<Wallet className="text-primary w-8 h-8" />
 								予算とメンバーは？
@@ -219,7 +230,9 @@ export default function TravelForm({
 
 						<div className="space-y-6">
 							<div className="space-y-2">
-								<label className="font-bold text-muted-foreground ml-2">予算感</label>
+								<label className="font-bold text-muted-foreground ml-2">
+									予算感
+								</label>
 								<div className="relative">
 									<select
 										value={formData.budget}
@@ -231,29 +244,37 @@ export default function TravelForm({
 										<option>ちょっと贅沢</option>
 										<option>お金に糸目はつけない</option>
 									</select>
-									<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">▼</div>
+									<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
+										▼
+									</div>
 								</div>
 							</div>
 
 							<div className="space-y-2">
-								<label className="font-bold text-muted-foreground ml-2">誰と行く？</label>
+								<label className="font-bold text-muted-foreground ml-2">
+									誰と行く？
+								</label>
 								<div className="grid grid-cols-2 gap-3">
 									{COMPANION_OPTIONS.map((item) => (
-										<div 
+										<div
 											key={item.label}
 											onClick={() => handleChange('companions', item.label)}
 											className={`
 												cursor-pointer flex items-center gap-3 p-4 rounded-2xl border-2 transition-all
-												${formData.companions === item.label 
-													? 'bg-primary/10 border-primary shadow-sm' 
-													: 'bg-accent/10 border-transparent hover:bg-accent/20'}
+												${
+													formData.companions === item.label
+														? 'bg-primary/10 border-primary shadow-sm'
+														: 'bg-accent/10 border-transparent hover:bg-accent/20'
+												}
 											`}
 										>
 											<div className={`p-2 rounded-xl ${item.color}`}>
 												<item.icon className="w-5 h-5" />
 											</div>
 											<span className="font-bold text-sm">{item.label}</span>
-											{formData.companions === item.label && <CheckCircle2 className="w-5 h-5 text-primary ml-auto" />}
+											{formData.companions === item.label && (
+												<CheckCircle2 className="w-5 h-5 text-primary ml-auto" />
+											)}
 										</div>
 									))}
 								</div>
@@ -266,7 +287,9 @@ export default function TravelForm({
 				{step === 4 && (
 					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
 						<div className="text-center space-y-2">
-							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">STEP 4</span>
+							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
+								STEP 4
+							</span>
 							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
 								<Heart className="text-primary w-8 h-8" />
 								どんな旅にしたい？
@@ -278,17 +301,23 @@ export default function TravelForm({
 							{STYLE_OPTIONS.map((item) => {
 								const isSelected = formData.style?.includes(item.label);
 								return (
-									<div 
+									<div
 										key={item.label}
 										onClick={() => handleStyleChange(item.label)}
 										className={`
 											cursor-pointer flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all gap-2 text-center h-32
-											${isSelected
-												? 'bg-secondary/30 border-primary/50 shadow-sm' 
-												: 'bg-accent/10 border-transparent hover:bg-accent/20'}
+											${
+												isSelected
+													? 'bg-secondary/30 border-primary/50 shadow-sm'
+													: 'bg-accent/10 border-transparent hover:bg-accent/20'
+											}
 										`}
 									>
-										<div className={`p-3 rounded-full ${item.color} ${isSelected ? 'scale-110' : ''} transition-transform`}>
+										<div
+											className={`p-3 rounded-full ${item.color} ${
+												isSelected ? 'scale-110' : ''
+											} transition-transform`}
+										>
 											<item.icon className="w-6 h-6" />
 										</div>
 										<span className="font-bold text-sm">{item.label}</span>
@@ -303,7 +332,9 @@ export default function TravelForm({
 				{step === 5 && (
 					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
 						<div className="text-center space-y-2">
-							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">STEP 5</span>
+							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
+								STEP 5
+							</span>
 							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
 								<Sparkles className="text-primary w-8 h-8" />
 								最後にこだわりを教えて！
@@ -333,14 +364,14 @@ export default function TravelForm({
 							戻る
 						</button>
 					)}
-					
+
 					{step < TOTAL_STEPS ? (
 						<button
 							key="btn-next"
 							type="button"
 							onClick={nextStep}
 							disabled={!formData.destination && step === 1} // 行き先未入力なら進めない
-							className="flex-[2] py-4 rounded-2xl bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+							className="flex-2 py-4 rounded-2xl bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
 						>
 							次へ
 							<ArrowRight className="w-5 h-5" />
@@ -350,12 +381,14 @@ export default function TravelForm({
 							key="btn-submit"
 							type="submit"
 							disabled={loading}
-							className="flex-[2] py-4 rounded-2xl bg-linear-to-r from-primary to-cyan-400 text-white font-bold shadow-lg shadow-primary/30 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+							className="flex-2 py-4 rounded-2xl bg-linear-to-r from-primary to-cyan-400 text-white font-bold shadow-lg shadow-primary/30 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
 						>
 							{loading ? (
 								<>
 									<Luggage className="animate-bounce" />
-									<span className="animate-pulse">{LOADING_MESSAGES[messageIndex]}</span>
+									<span className="animate-pulse">
+										{LOADING_MESSAGES[messageIndex]}
+									</span>
 								</>
 							) : (
 								<>
