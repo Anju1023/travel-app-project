@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextResponse } from 'next/server';
 import { TravelFormData, PlanDataSchema } from '@/types/plan';
-import { z, ZodError } from 'zod';
+import { ZodError } from 'zod';
 
 // Google Generative AI SDKを初期化するよ！
 // APIキーは安全のために .env.local に隠してあるの。process.env で呼び出すよ。
