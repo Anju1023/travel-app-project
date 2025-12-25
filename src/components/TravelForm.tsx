@@ -94,7 +94,10 @@ export default function TravelForm({
 	}, [loading]);
 
 	// 入力値が変わった時の処理
-	const handleChange = <K extends keyof TravelFormData>(name: K, value: TravelFormData[K]) => {
+	const handleChange = <K extends keyof TravelFormData>(
+		name: K,
+		value: TravelFormData[K]
+	) => {
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
@@ -128,15 +131,16 @@ export default function TravelForm({
 
 	return (
 		<div className="w-full glass-card rounded-5xl overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] relative">
-			
-			<form onSubmit={handleSubmit} className="p-6 md:p-10 space-y-8 relative z-10">
-				
+			<form
+				onSubmit={handleSubmit}
+				className="p-6 md:p-10 space-y-8 relative z-10"
+			>
 				{/* ステップインジケーター (ドット) */}
 				<div className="flex justify-center gap-3 mb-2">
 					{Array.from({ length: TOTAL_STEPS }).map((_, index) => {
 						const isCurrent = step === index + 1;
 						const isPast = step > index + 1;
-						
+
 						return (
 							<div
 								key={index}
@@ -155,7 +159,7 @@ export default function TravelForm({
 					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
 						<div className="text-center space-y-3 px-2">
 							<h3 className="text-2xl md:text-3xl font-bold text-slate-700 flex flex-col items-center gap-4 text-balance leading-tight">
-								<span className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
+								<span className="p-5 bg-linear-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
 									<MapPin className="w-10 h-10" />
 								</span>
 								どこに行きたい？
@@ -170,7 +174,7 @@ export default function TravelForm({
 								className="w-full p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none text-xl text-center placeholder:text-slate-400 group-hover:bg-white/80"
 								autoFocus
 							/>
-							<div className="absolute inset-0 -z-10 bg-gradient-to-r from-sky-200 to-cyan-200 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+							<div className="absolute inset-0 -z-10 bg-linear-to-r from-sky-200 to-cyan-200 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
 						</div>
 					</div>
 				)}
@@ -180,7 +184,7 @@ export default function TravelForm({
 					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
 						<div className="text-center space-y-3">
 							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-4">
-								<span className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
+								<span className="p-5 bg-linear-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
 									<Calendar className="w-10 h-10" />
 								</span>
 								いつ、どれくらい？
@@ -231,7 +235,7 @@ export default function TravelForm({
 					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
 						<div className="text-center space-y-3">
 							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-4">
-								<span className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
+								<span className="p-5 bg-linear-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
 									<Wallet className="w-10 h-10" />
 								</span>
 								予算とメンバーは？
@@ -278,10 +282,14 @@ export default function TravelForm({
 												}
 											`}
 										>
-											<div className={`p-2.5 rounded-xl ${item.color} bg-opacity-10 shadow-sm`}>
+											<div
+												className={`p-2.5 rounded-xl ${item.color} bg-opacity-10 shadow-sm`}
+											>
 												<item.icon className="w-5 h-5" />
 											</div>
-											<span className="font-bold text-sm text-slate-700">{item.label}</span>
+											<span className="font-bold text-sm text-slate-700">
+												{item.label}
+											</span>
 											{formData.companions === item.label && (
 												<div className="absolute right-3 top-1/2 -translate-y-1/2 bg-sky-400 text-white rounded-full p-1 shadow-lg shadow-sky-200">
 													<CheckCircle2 className="w-3 h-3" />
@@ -300,7 +308,7 @@ export default function TravelForm({
 					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
 						<div className="text-center space-y-3">
 							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-4">
-								<span className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
+								<span className="p-5 bg-linear-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
 									<Heart className="w-10 h-10" />
 								</span>
 								どんな旅にしたい？
@@ -319,19 +327,25 @@ export default function TravelForm({
 											cursor-pointer flex flex-col items-center justify-center p-4 rounded-2xl border transition-all duration-300 gap-3 text-center h-36 relative
 											${
 												isSelected
-													? 'bg-gradient-to-br from-sky-50 to-white border-sky-200 shadow-md scale-[1.03]'
+													? 'bg-linear-to-br from-sky-50 to-white border-sky-200 shadow-md scale-[1.03]'
 													: 'bg-white/40 border-slate-100 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1'
 											}
 										`}
 									>
 										<div
-											className={`p-3 rounded-full ${item.color} bg-opacity-10 ${
+											className={`p-3 rounded-full ${
+												item.color
+											} bg-opacity-10 ${
 												isSelected ? 'scale-110 shadow-sm' : ''
 											} transition-transform duration-300`}
 										>
 											<item.icon className="w-6 h-6" />
 										</div>
-										<span className={`font-bold text-sm ${isSelected ? 'text-sky-900' : 'text-slate-600'}`}>
+										<span
+											className={`font-bold text-sm ${
+												isSelected ? 'text-sky-900' : 'text-slate-600'
+											}`}
+										>
 											{item.label}
 										</span>
 										{isSelected && (
@@ -349,7 +363,7 @@ export default function TravelForm({
 					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
 						<div className="text-center space-y-3">
 							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-4">
-								<span className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
+								<span className="p-5 bg-linear-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
 									<Sparkles className="w-10 h-10" />
 								</span>
 								最後にこだわりを教えて！
@@ -388,7 +402,7 @@ export default function TravelForm({
 							type="button"
 							onClick={nextStep}
 							disabled={!formData.destination && step === 1}
-							className="flex-2 py-4 rounded-2xl bg-gradient-to-r from-sky-400 to-cyan-400 text-white font-bold shadow-lg shadow-sky-200 hover:shadow-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none group"
+							className="flex-2 py-4 rounded-2xl bg-linear-to-r from-sky-400 to-cyan-400 text-white font-bold shadow-lg shadow-sky-200 hover:shadow-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none group"
 						>
 							次へ
 							<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -398,7 +412,7 @@ export default function TravelForm({
 							key="btn-submit"
 							type="submit"
 							disabled={loading}
-							className="flex-2 py-4 px-4 rounded-2xl bg-gradient-to-r from-sky-400 via-cyan-400 to-teal-400 bg-[length:200%_200%] animate-gradient text-white font-bold shadow-lg shadow-sky-200 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden relative min-w-0"
+							className="flex-2 py-4 px-4 rounded-2xl bg-linear-to-r from-sky-400 via-cyan-400 to-teal-400 bg-size-[200%_200%] animate-gradient text-white font-bold shadow-lg shadow-sky-200 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden relative min-w-0"
 						>
 							{loading ? (
 								<>
