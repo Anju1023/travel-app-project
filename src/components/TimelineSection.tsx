@@ -54,7 +54,18 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
                           <Clock className="w-4 h-4" />
                           {item.time}
                         </div>
-                        <div className="font-bold text-lg text-foreground">{item.place}</div>
+                        <div className="font-bold text-lg text-foreground">
+                          {/* 場所名をクリックするとGoogle検索できるようにしたよ！🔍 */}
+                          <a 
+                            href={`https://www.google.com/search?q=${encodeURIComponent(item.place)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline decoration-primary decoration-2 underline-offset-4 hover:text-primary transition-colors cursor-pointer"
+                            title="Googleで検索する"
+                          >
+                            {item.place}
+                          </a>
+                        </div>
                       </div>
                       <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
                     </div>

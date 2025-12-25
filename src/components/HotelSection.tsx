@@ -15,7 +15,18 @@ export default function HotelSection({ hotels }: { hotels: PlanData['hotels'] })
         {hotels.map((hotel, i) => (
           <div key={i} className="p-4 bg-accent/20 rounded-2xl flex flex-col md:flex-row gap-4 items-start md:items-center justify-between hover:bg-accent/30 transition-colors">
             <div>
-              <h4 className="font-bold text-lg">{hotel.name}</h4>
+              {/* ホテル名もクリックで検索できるように変更！🏨 */}
+              <h4 className="font-bold text-lg">
+                <a 
+                  href={`https://www.google.com/search?q=${encodeURIComponent(hotel.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline decoration-primary decoration-2 underline-offset-4 hover:text-primary transition-colors cursor-pointer"
+                  title="Googleで詳細を見る"
+                >
+                  {hotel.name}
+                </a>
+              </h4>
               <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
                 <MapPin className="w-4 h-4" />
                 {hotel.area}
