@@ -130,62 +130,69 @@ export default function TravelForm({
 	const progressWidth = ((step - 1) / (TOTAL_STEPS - 1)) * 100;
 
 	return (
-		<div className="w-full bg-white rounded-3xl shadow-lg border border-secondary/50 overflow-hidden">
+		<div className="w-full glass-card rounded-[2rem] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)]">
 			{/* プログレスバー */}
-			<div className="w-full h-2 bg-secondary/30">
+			<div className="w-full h-1.5 bg-slate-100">
 				<div
-					className="h-full bg-primary transition-all duration-500 ease-out"
+					className="h-full bg-gradient-to-r from-sky-300 to-cyan-300 transition-all duration-700 ease-out rounded-r-full shadow-[0_0_10px_rgba(56,189,248,0.5)]"
 					style={{ width: `${progressWidth}%` }}
 				/>
 			</div>
 
-			<form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-8">
+			<form onSubmit={handleSubmit} className="p-6 md:p-10 space-y-8">
 				{/* ステップ1: 行き先 */}
 				{step === 1 && (
-					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
-						<div className="text-center space-y-2">
-							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
-								STEP 1
+					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
+						<div className="text-center space-y-3">
+							<span className="inline-block text-xs font-bold tracking-wider text-sky-500 bg-sky-50 px-4 py-1.5 rounded-full uppercase">
+								Step 01
 							</span>
-							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
-								<MapPin className="text-primary w-8 h-8" />
+							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-3">
+								<span className="p-4 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm text-sky-400">
+									<MapPin className="w-8 h-8" />
+								</span>
 								どこに行きたい？
 							</h3>
 						</div>
-						<input
-							type="text"
-							value={formData.destination}
-							onChange={(e) => handleChange('destination', e.target.value)}
-							placeholder="例：京都、フランス、沖縄..."
-							className="w-full p-6 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none text-xl text-center placeholder:text-muted-foreground/50"
-							autoFocus
-						/>
+						<div className="relative group">
+							<input
+								type="text"
+								value={formData.destination}
+								onChange={(e) => handleChange('destination', e.target.value)}
+								placeholder="例：京都、フランス、沖縄..."
+								className="w-full p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none text-xl text-center placeholder:text-slate-400 group-hover:bg-white/80"
+								autoFocus
+							/>
+							<div className="absolute inset-0 -z-10 bg-gradient-to-r from-sky-200 to-cyan-200 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+						</div>
 					</div>
 				)}
 
 				{/* ステップ2: 日程・時期 */}
 				{step === 2 && (
-					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
-						<div className="text-center space-y-2">
-							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
-								STEP 2
+					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
+						<div className="text-center space-y-3">
+							<span className="inline-block text-xs font-bold tracking-wider text-sky-500 bg-sky-50 px-4 py-1.5 rounded-full uppercase">
+								Step 02
 							</span>
-							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
-								<Calendar className="text-primary w-8 h-8" />
+							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-3">
+								<span className="p-4 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm text-sky-400">
+									<Calendar className="w-8 h-8" />
+								</span>
 								いつ、どれくらい？
 							</h3>
 						</div>
 
-						<div className="space-y-4">
+						<div className="space-y-6">
 							<div className="space-y-2">
-								<label className="font-bold text-muted-foreground ml-2">
+								<label className="text-sm font-bold text-slate-500 ml-1">
 									何泊する？
 								</label>
-								<div className="relative">
+								<div className="relative group">
 									<select
 										value={formData.duration}
 										onChange={(e) => handleChange('duration', e.target.value)}
-										className="w-full p-4 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none appearance-none cursor-pointer text-lg"
+										className="w-full p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none appearance-none cursor-pointer text-lg text-slate-700 group-hover:bg-white/80"
 									>
 										<option>日帰り</option>
 										<option>1泊2日</option>
@@ -193,14 +200,14 @@ export default function TravelForm({
 										<option>3泊4日</option>
 										<option>4泊5日以上</option>
 									</select>
-									<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
+									<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
 										▼
 									</div>
 								</div>
 							</div>
 
 							<div className="space-y-2">
-								<label className="font-bold text-muted-foreground ml-2">
+								<label className="text-sm font-bold text-slate-500 ml-1">
 									いつ頃行く？
 								</label>
 								<input
@@ -208,7 +215,7 @@ export default function TravelForm({
 									value={formData.timing}
 									onChange={(e) => handleChange('timing', e.target.value)}
 									placeholder="例：10月下旬、GW、来年の夏..."
-									className="w-full p-4 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none text-lg"
+									className="w-full p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none text-lg text-slate-700 placeholder:text-slate-400"
 								/>
 							</div>
 						</div>
@@ -217,63 +224,67 @@ export default function TravelForm({
 
 				{/* ステップ3: 予算・同行者 */}
 				{step === 3 && (
-					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
-						<div className="text-center space-y-2">
-							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
-								STEP 3
+					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
+						<div className="text-center space-y-3">
+							<span className="inline-block text-xs font-bold tracking-wider text-sky-500 bg-sky-50 px-4 py-1.5 rounded-full uppercase">
+								Step 03
 							</span>
-							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
-								<Wallet className="text-primary w-8 h-8" />
+							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-3">
+								<span className="p-4 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm text-sky-400">
+									<Wallet className="w-8 h-8" />
+								</span>
 								予算とメンバーは？
 							</h3>
 						</div>
 
-						<div className="space-y-6">
+						<div className="space-y-8">
 							<div className="space-y-2">
-								<label className="font-bold text-muted-foreground ml-2">
+								<label className="text-sm font-bold text-slate-500 ml-1">
 									予算感
 								</label>
 								<div className="relative">
 									<select
 										value={formData.budget}
 										onChange={(e) => handleChange('budget', e.target.value)}
-										className="w-full p-4 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none appearance-none cursor-pointer text-lg"
+										className="w-full p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none appearance-none cursor-pointer text-lg text-slate-700"
 									>
 										<option>なるべく安く</option>
 										<option>そこそこ（普通）</option>
 										<option>ちょっと贅沢</option>
 										<option>お金に糸目はつけない</option>
 									</select>
-									<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
+									<div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
 										▼
 									</div>
 								</div>
 							</div>
 
-							<div className="space-y-2">
-								<label className="font-bold text-muted-foreground ml-2">
+							<div className="space-y-3">
+								<label className="text-sm font-bold text-slate-500 ml-1">
 									誰と行く？
 								</label>
-								<div className="grid grid-cols-2 gap-3">
+								<div className="grid grid-cols-2 gap-4">
 									{COMPANION_OPTIONS.map((item) => (
 										<div
 											key={item.label}
 											onClick={() => handleChange('companions', item.label)}
 											className={`
-												cursor-pointer flex items-center gap-3 p-4 rounded-2xl border-2 transition-all
+												cursor-pointer flex items-center gap-3 p-4 rounded-2xl border transition-all duration-300 relative overflow-hidden group
 												${
 													formData.companions === item.label
-														? 'bg-primary/10 border-primary shadow-sm'
-														: 'bg-accent/10 border-transparent hover:bg-accent/20'
+														? 'bg-sky-50 border-sky-200 shadow-md scale-[1.02]'
+														: 'bg-white/40 border-slate-100 hover:bg-white/60 hover:border-slate-200 hover:shadow-sm'
 												}
 											`}
 										>
-											<div className={`p-2 rounded-xl ${item.color}`}>
+											<div className={`p-2.5 rounded-xl ${item.color} bg-opacity-10 shadow-sm`}>
 												<item.icon className="w-5 h-5" />
 											</div>
-											<span className="font-bold text-sm">{item.label}</span>
+											<span className="font-bold text-sm text-slate-700">{item.label}</span>
 											{formData.companions === item.label && (
-												<CheckCircle2 className="w-5 h-5 text-primary ml-auto" />
+												<div className="absolute right-3 top-1/2 -translate-y-1/2 bg-sky-400 text-white rounded-full p-1 shadow-lg shadow-sky-200">
+													<CheckCircle2 className="w-3 h-3" />
+												</div>
 											)}
 										</div>
 									))}
@@ -285,19 +296,21 @@ export default function TravelForm({
 
 				{/* ステップ4: 旅のスタイル */}
 				{step === 4 && (
-					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
-						<div className="text-center space-y-2">
-							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
-								STEP 4
+					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
+						<div className="text-center space-y-3">
+							<span className="inline-block text-xs font-bold tracking-wider text-sky-500 bg-sky-50 px-4 py-1.5 rounded-full uppercase">
+								Step 04
 							</span>
-							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
-								<Heart className="text-primary w-8 h-8" />
+							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-3">
+								<span className="p-4 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm text-sky-400">
+									<Heart className="w-8 h-8" />
+								</span>
 								どんな旅にしたい？
 							</h3>
-							<p className="text-muted-foreground text-sm">複数選んでね！</p>
+							<p className="text-slate-400 text-sm">複数選んでね！</p>
 						</div>
 
-						<div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+						<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
 							{STYLE_OPTIONS.map((item) => {
 								const isSelected = formData.style?.includes(item.label);
 								return (
@@ -305,22 +318,27 @@ export default function TravelForm({
 										key={item.label}
 										onClick={() => handleStyleChange(item.label)}
 										className={`
-											cursor-pointer flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all gap-2 text-center h-32
+											cursor-pointer flex flex-col items-center justify-center p-4 rounded-2xl border transition-all duration-300 gap-3 text-center h-36 relative
 											${
 												isSelected
-													? 'bg-secondary/30 border-primary/50 shadow-sm'
-													: 'bg-accent/10 border-transparent hover:bg-accent/20'
+													? 'bg-gradient-to-br from-sky-50 to-white border-sky-200 shadow-md scale-[1.03]'
+													: 'bg-white/40 border-slate-100 hover:bg-white/80 hover:shadow-lg hover:-translate-y-1'
 											}
 										`}
 									>
 										<div
-											className={`p-3 rounded-full ${item.color} ${
-												isSelected ? 'scale-110' : ''
-											} transition-transform`}
+											className={`p-3 rounded-full ${item.color} bg-opacity-10 ${
+												isSelected ? 'scale-110 shadow-sm' : ''
+											} transition-transform duration-300`}
 										>
 											<item.icon className="w-6 h-6" />
 										</div>
-										<span className="font-bold text-sm">{item.label}</span>
+										<span className={`font-bold text-sm ${isSelected ? 'text-sky-900' : 'text-slate-600'}`}>
+											{item.label}
+										</span>
+										{isSelected && (
+											<div className="absolute top-3 right-3 w-2 h-2 bg-sky-400 rounded-full shadow-lg shadow-sky-200" />
+										)}
 									</div>
 								);
 							})}
@@ -330,37 +348,41 @@ export default function TravelForm({
 
 				{/* ステップ5: こだわり条件 */}
 				{step === 5 && (
-					<div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
-						<div className="text-center space-y-2">
-							<span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
-								STEP 5
+					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
+						<div className="text-center space-y-3">
+							<span className="inline-block text-xs font-bold tracking-wider text-sky-500 bg-sky-50 px-4 py-1.5 rounded-full uppercase">
+								Step 05
 							</span>
-							<h3 className="text-2xl font-bold flex items-center justify-center gap-2">
-								<Sparkles className="text-primary w-8 h-8" />
+							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-3">
+								<span className="p-4 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm text-sky-400">
+									<Sparkles className="w-8 h-8" />
+								</span>
 								最後にこだわりを教えて！
 							</h3>
 						</div>
-						<textarea
-							value={formData.freeText}
-							onChange={(e) => handleChange('freeText', e.target.value)}
-							placeholder="例：海が見えるカフェに行きたい、歴史的な建物を中心に回りたい..."
-							className="w-full p-6 bg-accent/30 rounded-2xl border-2 border-transparent focus:border-primary/50 focus:bg-white transition-all outline-none min-h-40 resize-none text-lg"
-							autoFocus
-						/>
+						<div className="relative group">
+							<textarea
+								value={formData.freeText}
+								onChange={(e) => handleChange('freeText', e.target.value)}
+								placeholder="例：海が見えるカフェに行きたい、歴史的な建物を中心に回りたい..."
+								className="w-full p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none min-h-48 resize-none text-lg text-slate-700 placeholder:text-slate-400 leading-relaxed group-hover:bg-white/80"
+								autoFocus
+							/>
+						</div>
 					</div>
 				)}
 
 				{/* ナビゲーションボタン */}
-				<div className="flex gap-4 pt-4">
+				<div className="flex gap-4 pt-6">
 					{step > 1 && (
 						<button
 							key="btn-prev"
 							type="button"
 							onClick={prevStep}
 							disabled={loading}
-							className="flex-1 py-4 rounded-2xl bg-muted text-muted-foreground font-bold hover:bg-muted/80 transition-all flex items-center justify-center gap-2"
+							className="flex-1 py-4 rounded-2xl bg-white/50 hover:bg-white text-slate-500 font-bold border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-center gap-2 group"
 						>
-							<ArrowLeft className="w-5 h-5" />
+							<ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
 							戻る
 						</button>
 					)}
@@ -370,30 +392,31 @@ export default function TravelForm({
 							key="btn-next"
 							type="button"
 							onClick={nextStep}
-							disabled={!formData.destination && step === 1} // 行き先未入力なら進めない
-							className="flex-2 py-4 rounded-2xl bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+							disabled={!formData.destination && step === 1}
+							className="flex-2 py-4 rounded-2xl bg-gradient-to-r from-sky-400 to-cyan-400 text-white font-bold shadow-lg shadow-sky-200 hover:shadow-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none group"
 						>
 							次へ
-							<ArrowRight className="w-5 h-5" />
+							<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
 						</button>
 					) : (
 						<button
 							key="btn-submit"
 							type="submit"
 							disabled={loading}
-							className="flex-2 py-4 rounded-2xl bg-linear-to-r from-primary to-cyan-400 text-white font-bold shadow-lg shadow-primary/30 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+							className="flex-2 py-4 rounded-2xl bg-gradient-to-r from-sky-400 via-cyan-400 to-teal-400 bg-[length:200%_200%] animate-gradient text-white font-bold shadow-lg shadow-sky-200 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 overflow-hidden relative"
 						>
 							{loading ? (
 								<>
-									<Luggage className="animate-bounce" />
-									<span className="animate-pulse">
+									<div className="absolute inset-0 bg-white/20 animate-pulse" />
+									<Luggage className="animate-bounce relative z-10" />
+									<span className="relative z-10 font-medium">
 										{LOADING_MESSAGES[messageIndex]}
 									</span>
 								</>
 							) : (
 								<>
 									<Sparkles className="animate-pulse" />
-									プランを作成！
+									素敵なプランを作成！
 								</>
 							)}
 						</button>
