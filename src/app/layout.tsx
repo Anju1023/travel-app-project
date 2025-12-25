@@ -11,8 +11,8 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "AI Travel Planner - Gemini 3.0",
-  description: "AIがあなたの旅行プランを瞬時に提案します。",
+  title: "Fuwari - AI Travel Planner",
+  description: "ふわりと軽い旅を。AIがあなたにぴったりの旅行プランを提案します。",
 };
 
 export default function RootLayout({

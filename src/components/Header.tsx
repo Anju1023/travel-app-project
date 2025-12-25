@@ -9,7 +9,7 @@ export default function Header() {
           <Plane className="w-6 h-6 text-primary transform group-hover:-rotate-12 transition-transform" />
         </div>
         <span className="text-xl font-bold tracking-tight text-primary">
-          Travel<span className="text-foreground">AI</span>
+          Fuwari
         </span>
       </Link>
       <nav>

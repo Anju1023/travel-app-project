@@ -1,4 +1,4 @@
-# AI Travel Planner Project (Completed! 🎉)
+# Fuwari - AI Travel Planner Project (Completed! 🎉)
 
 Gemini 3.0 Flash を活用した、おしゃれでスマートな旅行プラン提案アプリ。
 あんじゅと一緒に作り上げました！

@@ -3,7 +3,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full py-6 text-center text-sm text-muted-foreground mt-auto bg-muted/30">
-      <p>&copy; {year} AI Travel Planner. Powered by Gemini 3.0 Flash.</p>
+      <p>&copy; {year} Fuwari. Powered by Gemini 3.0 Flash.</p>
     </footer>
   );
 }
