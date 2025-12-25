@@ -130,26 +130,36 @@ export default function TravelForm({
 	const progressWidth = ((step - 1) / (TOTAL_STEPS - 1)) * 100;
 
 	return (
-		<div className="w-full glass-card rounded-[2rem] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)]">
-			{/* プログレスバー */}
-			<div className="w-full h-1.5 bg-slate-100">
-				<div
-					className="h-full bg-gradient-to-r from-sky-300 to-cyan-300 transition-all duration-700 ease-out rounded-r-full shadow-[0_0_10px_rgba(56,189,248,0.5)]"
-					style={{ width: `${progressWidth}%` }}
-				/>
-			</div>
+		<div className="w-full glass-card rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] relative">
+			
+			<form onSubmit={handleSubmit} className="p-6 md:p-10 space-y-8 relative z-10">
+				
+				{/* ステップインジケーター (ドット) */}
+				<div className="flex justify-center gap-3 mb-2">
+					{Array.from({ length: TOTAL_STEPS }).map((_, index) => {
+						const isCurrent = step === index + 1;
+						const isPast = step > index + 1;
+						
+						return (
+							<div
+								key={index}
+								className={`
+									h-2.5 rounded-full transition-all duration-500 ease-out
+									${isCurrent ? 'w-8 bg-sky-400 shadow-md shadow-sky-200' : 'w-2.5 bg-slate-200'}
+									${isPast ? 'bg-sky-200' : ''}
+								`}
+							/>
+						);
+					})}
+				</div>
 
-			<form onSubmit={handleSubmit} className="p-6 md:p-10 space-y-8">
 				{/* ステップ1: 行き先 */}
 				{step === 1 && (
 					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
 						<div className="text-center space-y-3">
-							<span className="inline-block text-xs font-bold tracking-wider text-sky-500 bg-sky-50 px-4 py-1.5 rounded-full uppercase">
-								Step 01
-							</span>
-							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-3">
-								<span className="p-4 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm text-sky-400">
-									<MapPin className="w-8 h-8" />
+							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-4">
+								<span className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
+									<MapPin className="w-10 h-10" />
 								</span>
 								どこに行きたい？
 							</h3>
@@ -172,12 +182,9 @@ export default function TravelForm({
 				{step === 2 && (
 					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
 						<div className="text-center space-y-3">
-							<span className="inline-block text-xs font-bold tracking-wider text-sky-500 bg-sky-50 px-4 py-1.5 rounded-full uppercase">
-								Step 02
-							</span>
-							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-3">
-								<span className="p-4 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm text-sky-400">
-									<Calendar className="w-8 h-8" />
+							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-4">
+								<span className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
+									<Calendar className="w-10 h-10" />
 								</span>
 								いつ、どれくらい？
 							</h3>
@@ -226,12 +233,9 @@ export default function TravelForm({
 				{step === 3 && (
 					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
 						<div className="text-center space-y-3">
-							<span className="inline-block text-xs font-bold tracking-wider text-sky-500 bg-sky-50 px-4 py-1.5 rounded-full uppercase">
-								Step 03
-							</span>
-							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-3">
-								<span className="p-4 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm text-sky-400">
-									<Wallet className="w-8 h-8" />
+							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-4">
+								<span className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
+									<Wallet className="w-10 h-10" />
 								</span>
 								予算とメンバーは？
 							</h3>
@@ -298,12 +302,9 @@ export default function TravelForm({
 				{step === 4 && (
 					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
 						<div className="text-center space-y-3">
-							<span className="inline-block text-xs font-bold tracking-wider text-sky-500 bg-sky-50 px-4 py-1.5 rounded-full uppercase">
-								Step 04
-							</span>
-							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-3">
-								<span className="p-4 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm text-sky-400">
-									<Heart className="w-8 h-8" />
+							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-4">
+								<span className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
+									<Heart className="w-10 h-10" />
 								</span>
 								どんな旅にしたい？
 							</h3>
@@ -350,12 +351,9 @@ export default function TravelForm({
 				{step === 5 && (
 					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
 						<div className="text-center space-y-3">
-							<span className="inline-block text-xs font-bold tracking-wider text-sky-500 bg-sky-50 px-4 py-1.5 rounded-full uppercase">
-								Step 05
-							</span>
-							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-3">
-								<span className="p-4 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm text-sky-400">
-									<Sparkles className="w-8 h-8" />
+							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-4">
+								<span className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
+									<Sparkles className="w-10 h-10" />
 								</span>
 								最後にこだわりを教えて！
 							</h3>
