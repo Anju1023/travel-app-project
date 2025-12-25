@@ -83,12 +83,12 @@ export default function Home() {
         あんじゅをワクワクさせるようなキャッチコピーにしているよ！
       */}
       {!plan && (
-        <div className="text-center space-y-4 py-8">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-foreground tracking-tight">
-            次は<span className="text-primary">どこ</span>に行く？
+        <div className="text-center space-y-4 py-12 px-4">
+          <h1 className="text-4xl md:text-6xl font-black text-slate-800 tracking-tight leading-[1.1] text-balance">
+            次は<span className="text-sky-400">どこ</span>に<br className="md:hidden"/>行く？
           </h1>
-          <p className="text-lg text-muted-foreground max-w-lg mx-auto">
-            最新の Gemini 3.0 が、今のあなたにぴったりの旅行プランを<br className="hidden md:inline"/>瞬時に提案します。✨
+          <p className="text-base md:text-xl text-slate-500 max-w-lg mx-auto leading-relaxed text-balance opacity-80">
+            Fuwari が、今のあなたにぴったりの旅行プランを瞬時に提案します。✨
           </p>
         </div>
       )}

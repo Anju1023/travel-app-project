@@ -23,16 +23,17 @@ import {
 } from 'lucide-react';
 import { TravelFormData } from '@/types/plan';
 
-// ローディング中に表示する「実況メッセージ」のリストだよ！
+// ローディング中に表示する「実況メッセージ」
+// スマホでも入りきるように、少し短く整えるね！
 const LOADING_MESSAGES = [
-	'最高のプランを考え中...',
-	'現地の美味しいカフェを探しています...☕️',
-	'映えスポットを厳選中...📸',
-	'移動ルートを計算しています...🗺️',
-	'地元の隠れ家スポットを調査中...🤫',
-	'おすすめの宿泊先をピックアップ中...🏨',
-	'旅のしおりを執筆中...✍️',
-	'ワクワクする体験を詰め込み中...✨',
+	'プランを考え中...',
+	'カフェを探し中...☕️',
+	'スポットを厳選中...📸',
+	'ルートを計算中...🗺️',
+	'隠れ家を調査中...🤫',
+	'宿をピックアップ中...🏨',
+	'しおりを執筆中...✍️',
+	'ワクワクを詰め込み中...✨',
 ];
 
 // 同行者の選択肢データ
@@ -156,8 +157,8 @@ export default function TravelForm({
 				{/* ステップ1: 行き先 */}
 				{step === 1 && (
 					<div className="space-y-8 animate-in slide-in-from-right-8 fade-in duration-500">
-						<div className="text-center space-y-3">
-							<h3 className="text-3xl font-bold text-slate-700 flex flex-col items-center gap-4">
+						<div className="text-center space-y-3 px-2">
+							<h3 className="text-2xl md:text-3xl font-bold text-slate-700 flex flex-col items-center gap-4 text-balance leading-tight">
 								<span className="p-5 bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-sm text-sky-400 ring-1 ring-slate-50">
 									<MapPin className="w-10 h-10" />
 								</span>
@@ -401,20 +402,20 @@ export default function TravelForm({
 							key="btn-submit"
 							type="submit"
 							disabled={loading}
-							className="flex-2 py-4 rounded-2xl bg-gradient-to-r from-sky-400 via-cyan-400 to-teal-400 bg-[length:200%_200%] animate-gradient text-white font-bold shadow-lg shadow-sky-200 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 overflow-hidden relative"
+							className="flex-2 py-4 px-4 rounded-2xl bg-gradient-to-r from-sky-400 via-cyan-400 to-teal-400 bg-[length:200%_200%] animate-gradient text-white font-bold shadow-lg shadow-sky-200 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden relative min-w-0"
 						>
 							{loading ? (
 								<>
 									<div className="absolute inset-0 bg-white/20 animate-pulse" />
-									<Luggage className="animate-bounce relative z-10" />
-									<span className="relative z-10 font-medium">
+									<Luggage className="w-5 h-5 animate-bounce relative z-10 shrink-0" />
+									<span className="relative z-10 font-medium text-sm md:text-base truncate">
 										{LOADING_MESSAGES[messageIndex]}
 									</span>
 								</>
 							) : (
 								<>
-									<Sparkles className="animate-pulse" />
-									素敵なプランを作成！
+									<Sparkles className="w-5 h-5 animate-pulse shrink-0" />
+									<span className="whitespace-nowrap">プランを作成！</span>
 								</>
 							)}
 						</button>
