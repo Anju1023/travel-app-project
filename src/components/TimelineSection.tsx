@@ -24,7 +24,7 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 				return (
 					<div
 						key={day.day}
-						className="glass-card rounded-[2rem] overflow-hidden transition-all duration-500 hover:shadow-md"
+						className="glass-card rounded-4xl overflow-hidden transition-all duration-500 hover:shadow-md"
 					>
 						{/* ヘッダーボタン */}
 						<button
@@ -46,7 +46,11 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 								</span>
 								<span className="tracking-tight">Day {day.day}</span>
 							</h3>
-							<div className={`p-2 rounded-full transition-all duration-300 ${isOpen ? 'bg-sky-50 text-sky-500' : 'text-slate-300'}`}>
+							<div
+								className={`p-2 rounded-full transition-all duration-300 ${
+									isOpen ? 'bg-sky-50 text-sky-500' : 'text-slate-300'
+								}`}
+							>
 								<ChevronDown
 									className={`w-6 h-6 transition-transform duration-500 ${
 										isOpen ? 'rotate-180' : ''
@@ -58,7 +62,9 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 						{/* スケジュール詳細 */}
 						<div
 							className={`transition-all duration-500 ease-in-out ${
-								isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+								isOpen
+									? 'max-h-500 opacity-100'
+									: 'max-h-0 opacity-0 overflow-hidden'
 							}`}
 						>
 							<div className="p-8 pt-0">
@@ -67,7 +73,7 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 										<div key={i} className="relative pl-8 group">
 											{/* ふわっと光るドット */}
 											<div className="absolute -left-[1.85rem] top-1.5 w-5 h-5 rounded-full bg-white border-4 border-sky-300 shadow-sm group-hover:border-sky-400 group-hover:scale-125 transition-all duration-300" />
-											
+
 											<div className="flex flex-col sm:flex-row sm:items-baseline gap-2 mb-2">
 												<div className="flex items-center gap-1.5 text-sky-500 font-black text-sm tracking-wider">
 													<Clock className="w-4 h-4" />
