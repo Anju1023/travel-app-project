@@ -350,7 +350,7 @@ export default function TravelForm({
 							type="button"
 							onClick={nextStep}
 							disabled={!formData.destination && step === 1}
-							className="btn-ripple flex-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[var(--color-ocean-blue)] to-[var(--color-sunset-orange)] text-white font-bold hover:opacity-90 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+							className="btn-ripple flex-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[var(--color-ocean-blue)] to-[var(--color-sunset-orange)] text-white font-bold hover:opacity-90 flex items-center justify-center gap-2 disabled:from-gray-300 disabled:to-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed shadow-lg disabled:shadow-none transition-all"
 						>
 							次へ
 							<ArrowRight className="w-4 h-4" />
@@ -359,7 +359,7 @@ export default function TravelForm({
 						<button
 							type="submit"
 							disabled={loading}
-							className="btn-ripple flex-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[var(--color-ocean-blue)] to-[var(--color-sunset-orange)] text-white font-bold hover:opacity-90 disabled:opacity-70 flex items-center justify-center gap-2 shadow-lg"
+							className="btn-ripple flex-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[var(--color-ocean-blue)] to-[var(--color-sunset-orange)] text-white font-bold hover:opacity-90 disabled:from-gray-300 disabled:to-gray-400 disabled:text-gray-500 disabled:shadow-none flex items-center justify-center gap-2 shadow-lg transition-all"
 						>
 							{loading ? (
 								<>

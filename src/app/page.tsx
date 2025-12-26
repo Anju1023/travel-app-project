@@ -84,11 +84,11 @@ export default function Home() {
       */}
       {!plan && (
         <div className="text-center space-y-4 py-12 px-4">
-          <h1 className="text-4xl md:text-6xl font-black text-white drop-shadow-md tracking-tight leading-[1.1] text-balance">
+          <h1 className="text-4xl md:text-6xl font-black text-[var(--color-deep-ocean)] drop-shadow-sm tracking-tight leading-[1.1] text-balance">
             今年の夏は、<br className="md:hidden"/>
-            <span className="bg-gradient-to-r from-[var(--color-lemon-yellow)] to-[var(--color-sunset-orange)] bg-clip-text text-transparent drop-shadow-sm">どこ</span>に行く？
+            <span className="bg-gradient-to-r from-[var(--color-ocean-blue)] to-[var(--color-sunset-orange)] bg-clip-text text-transparent drop-shadow-sm">どこ</span>に行く？
           </h1>
-          <p className="text-base md:text-xl text-white/90 max-w-lg mx-auto leading-relaxed text-balance font-medium drop-shadow-sm">
+          <p className="text-base md:text-xl text-[var(--color-deep-ocean)]/80 max-w-lg mx-auto leading-relaxed text-balance font-medium">
             Fuwari が、最高の夏休みプランを瞬時に提案します。🍹✨
           </p>
         </div>
