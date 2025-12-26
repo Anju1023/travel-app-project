@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { Zen_Maru_Gothic } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const notoSansJP = Noto_Sans_JP({
+// Noto Sans JP から Zen Maru Gothic に変更！
+// 丸っこくて可愛いフォントだよ🍬
+const zenMaruGothic = Zen_Maru_Gothic({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+  display: "swap", // フォント読み込み中の表示崩れを防ぐ
 });
 
 export const metadata: Metadata = {
@@ -22,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className={`${notoSansJP.variable} relative min-h-screen text-slate-700 antialiased selection:bg-sky-200 selection:text-sky-900`}>
+      <body className={`${zenMaruGothic.variable} relative min-h-screen text-slate-700 antialiased selection:bg-sky-200 selection:text-sky-900 font-sans`}>
         {/* 背景装飾 (オーブ) */}
         <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
           <div className="absolute rounded-full blur-3xl opacity-60 pointer-events-none -z-10 mix-blend-multiply w-96 h-96 bg-sky-200/50 top-[-10%] left-[-10%] animate-float" />
