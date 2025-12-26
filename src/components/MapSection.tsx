@@ -48,20 +48,19 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 			: [35.6812, 139.7671]; // スポットがない時は東京駅付近
 
 	return (
-		<div className="simple-card p-4 md:p-6 overflow-hidden">
-			<h3 className="text-xl font-bold text-[var(--color-text-main)] mb-6 flex items-center gap-3">
-				<div className="p-2 bg-gray-100 rounded-lg text-[var(--color-text-main)]">
-					<LucideMap className="w-6 h-6" />
+		<div>
+			<h3>
+				<div>
+					<LucideMap />
 				</div>
 				旅のマップ
 			</h3>
 
-			<div className="h-87.5 md:h-112.5 w-full rounded-lg overflow-hidden border border-[var(--color-border)] z-0 bg-gray-50">
+			<div>
 				<MapContainer
 					center={centerPos}
 					zoom={13}
 					scrollWheelZoom={false}
-					className="h-full w-full"
 					style={{ height: '100%', width: '100%' }}
 				>
 					<TileLayer
@@ -72,20 +71,19 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 					{allSpots.map((spot, i) => (
 						<Marker key={i} position={[spot.lat, spot.lng]}>
 							<Popup>
-								<div className="text-center p-1 font-sans">
-									<div className="font-bold text-sm mb-1">
+								<div>
+									<div>
 										<a
 											href={`https://www.google.com/search?q=${encodeURIComponent(
 												spot.place
 											)}`}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] hover:underline transition-all"
 										>
 											{spot.place}
 										</a>
 									</div>
-									<div className="text-[10px] font-bold text-gray-400 tracking-wider">
+									<div>
 										{spot.type === 'hotel' ? '🏨 HOTEL' : '📍 SPOT'}
 									</div>
 								</div>
@@ -94,7 +92,7 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 					))}
 				</MapContainer>
 			</div>
-			<p className="text-xs font-medium text-[var(--color-text-sub)] mt-4 text-center italic opacity-80">
+			<p>
 				ピンをタップすると場所の名前が見れるよ！📍
 			</p>
 		</div>

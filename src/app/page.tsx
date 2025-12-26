@@ -76,18 +76,18 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-8 animate-in fade-in zoom-in duration-500">
+    <div>
       
       {/* 
         まだプランがない時（最初の画面）に表示するヘッダーセクション 
         あんじゅをワクワクさせるようなキャッチコピーにしているよ！
       */}
       {!plan && (
-        <div className="text-center space-y-6 py-16 px-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <h1 className="text-4xl md:text-6xl font-black text-[var(--color-text-main)] tracking-tight leading-[1.1] text-balance">
-            次は<span className="text-[var(--color-primary)]">どこ</span>に行く？
+        <div>
+          <h1>
+            次は<span>どこ</span>に行く？
           </h1>
-          <p className="text-lg md:text-xl text-[var(--color-text-sub)] max-w-lg mx-auto leading-relaxed text-balance">
+          <p>
             Fuwari が、今のあなたにぴったりの旅行プランを瞬時に提案します。✨
           </p>
         </div>
@@ -97,11 +97,11 @@ export default function Home() {
         トラブル発生！エラーメッセージを表示
       */}
       {error && (
-        <div className="simple-card w-full max-w-2xl p-6 border-red-200 bg-red-50 text-red-700 flex items-start gap-4">
-          <AlertCircle className="w-6 h-6 shrink-0 mt-0.5 text-red-600" />
-          <div className="space-y-1">
-            <p className="font-bold text-lg">エラーが発生しました</p>
-            <p className="text-sm opacity-90">{error}</p>
+        <div>
+          <AlertCircle />
+          <div>
+            <p>エラーが発生しました</p>
+            <p>{error}</p>
           </div>
         </div>
       )}
@@ -110,7 +110,7 @@ export default function Home() {
         メインコンテンツエリア
         プランがあれば「結果画面」、なければ「入力フォーム」を出すように切り替えてるよ！
       */}
-      <div className="w-full max-w-3xl mb-12">
+      <div>
         {plan ? (
           <PlanResult plan={plan} onReset={handleReset} />
         ) : (

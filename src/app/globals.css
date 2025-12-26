@@ -1,69 +1,9 @@
 @import "tailwindcss";
 
-@theme {
-  --color-primary: #0EA5E9; /* Sky Blue 500 - Simple and clean accent */
-  --color-primary-dark: #0284C7; /* Sky Blue 600 - Hover state */
-  --color-text-main: #0F172A; /* Slate 900 - Deep black for text */
-  --color-text-sub: #64748B; /* Slate 500 - Muted text */
-  --color-bg-base: #F8FAFC; /* Slate 50 - Very light grey background */
-  --color-card-bg: #FFFFFF; /* White - Card background */
-  --color-border: #E2E8F0; /* Slate 200 - Light border */
-}
-
 :root {
   --font-sans: system-ui, -apple-system, sans-serif;
 }
 
 body {
   font-family: var(--font-sans);
-  min-height: 100vh;
-  background-color: var(--color-bg-base);
-  color: var(--color-text-main);
-  /* No gradient background */
-}
-
-/* Simple Card Utility */
-.simple-card {
-  background-color: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 0.75rem; /* rounded-xl */
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  transition: all 0.2s ease-in-out;
-}
-
-.simple-card:hover {
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-}
-
-/* Primary Button Utility */
-.btn-primary {
-  background-color: var(--color-text-main); /* Black button for clean look */
-  color: white;
-  border-radius: 0.5rem; /* rounded-lg */
-  font-weight: 600;
-  transition: all 0.2s;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-}
-
-.btn-primary:hover {
-  background-color: #334155; /* Slate 700 */
-}
-
-.btn-primary:disabled {
-  background-color: #94A3B8; /* Slate 400 */
-  cursor: not-allowed;
-}
-
-/* Secondary Button Utility */
-.btn-secondary {
-  background-color: white;
-  color: var(--color-text-main);
-  border: 1px solid var(--color-border);
-  border-radius: 0.5rem; /* rounded-lg */
-  font-weight: 500;
-  transition: all 0.2s;
-}
-
-.btn-secondary:hover {
-  background-color: #F1F5F9; /* Slate 100 */
 }

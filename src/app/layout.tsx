@@ -22,11 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body
-        className={`${notoSansJP.variable} antialiased min-h-screen flex flex-col bg-gray-50 text-slate-900`}
-      >
+      <body>
         <Header />
-        <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-8">
+        <main>
           {children}
         </main>
         <Footer />

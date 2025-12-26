@@ -10,7 +10,7 @@ import AdviceSection from './AdviceSection';
 const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
 	loading: () => (
-		<div className="h-96 w-full bg-white/30 rounded-lg flex items-center justify-center text-[var(--color-ocean-blue)] animate-pulse">
+		<div>
 			地図を読み込み中...🗺️
 		</div>
 	),
@@ -37,24 +37,16 @@ export default function PlanResult({
 	};
 
 	return (
-		<div className="space-y-12 py-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+		<div>
 			{/* Title & Copy */}
-			<div className="text-center space-y-4">
-				<h2 className="text-3xl font-bold text-[var(--color-text-main)]">
+			<div>
+				<h2>
 					{plan.title}
 				</h2>
 				<button
 					onClick={handleCopy}
-					className={`
-						inline-flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-medium border transition-all
-						${
-							copied
-								? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-								: 'bg-white text-[var(--color-text-sub)] border-[var(--color-border)] hover:bg-gray-50'
-						}
-					`}
 				>
-					{copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+					{copied ? <Check /> : <Copy />}
 					{copied ? 'コピーしました！' : 'プランをコピー'}
 				</button>
 			</div>
@@ -74,12 +66,11 @@ export default function PlanResult({
 			<AdviceSection packingList={plan.packingList} advice={plan.advice} />
 
 			{/* Reset Button */}
-			<div className="flex justify-center pt-8">
+			<div>
 				<button
 					onClick={onReset}
-					className="btn-secondary px-8 py-3 flex items-center gap-2"
 				>
-					<Repeat className="w-4 h-4" />
+					<Repeat />
 					もう一度作る
 				</button>
 			</div>
