@@ -167,31 +167,31 @@
 
 **コンセプト**: 空に浮かぶような透明感（Pure Airy）と、情報の見やすさ（Smart）の融合。
 
-- [ ] 🎨 **デザインシステム定義 (Tailwind v4)**
-  - [ ] `globals.css`: カラーパレット定義 (Sky Blue, Pure White, Pale Pink)
-  - [ ] `globals.css`: ベース背景（淡いグラデーション + オーブ）の実装
-  - [ ] `globals.css`: ユーティリティクラス作成 (`.glass-card`, `.solid-card`, `.text-gradient`)
+- [x] 🎨 **デザインシステム定義 (Tailwind v4)**
+  - [x] `globals.css`: カラーパレット定義 (Sky Blue, Pure White, Pale Pink)
+  - [x] `globals.css`: ベース背景（淡いグラデーション + オーブ）の実装
+  - [x] `globals.css`: ユーティリティクラス作成 (`.glass-card`, `.solid-card`, `.text-gradient`) -> *修正: コンポーネント側で直接記述に変更*
 
-- [ ] 🖼️ **基本レイアウトの実装**
-  - [ ] `layout.tsx`: アプリ全体の背景適用、フォント設定（Google Fonts: Zen Maru Gothic 等を検討）
-  - [ ] `Header.tsx`: グラスモーフィズム適用、ロゴデザイン調整
-  - [ ] `Footer.tsx`: シンプルで透明感のあるデザインへ
+- [x] 🖼️ **基本レイアウトの実装**
+  - [x] `layout.tsx`: アプリ全体の背景適用、フォント設定（Google Fonts: Zen Maru Gothic 等を検討）
+  - [x] `Header.tsx`: グラスモーフィズム適用、ロゴデザイン調整
+  - [x] `Footer.tsx`: シンプルで透明感のあるデザインへ
 
-- [ ] 🧩 **メインコンテンツのスタイリング**
-  - [ ] `TravelForm.tsx`:
-    - [ ] ステップ表示のデザイン化
-    - [ ] 入力フォーム・選択カードの「Airy Smart」化（白カード + 浮遊感）
-    - [ ] ボタンデザイン（グラデーション + ホバーエフェクト）
-  - [ ] `PlanResult.tsx`:
-    - [ ] 結果表示コンテナのデザイン整備
+- [x] 🧩 **メインコンテンツのスタイリング**
+  - [x] `TravelForm.tsx`:
+    - [x] ステップ表示のデザイン化
+    - [x] 入力フォーム・選択カードの「Airy Smart」化（白カード + 浮遊感）
+    - [x] ボタンデザイン（グラデーション + ホバーエフェクト）
+  - [x] `PlanResult.tsx`:
+    - [x] 結果表示コンテナのデザイン整備
 
-- [ ] 📍 **詳細セクションのスタイリング**
-  - [ ] `TimelineSection.tsx`: タイムラインを見やすく、かつ可愛く（Bento Grid風配置など検討）
-  - [ ] `HotelSection.tsx`: ホテルカードのデザイン（写真映えするレイアウト）
-  - [ ] `AdviceSection.tsx`: 持ち物リスト・アドバイスのカード化
-  - [ ] `MapSection.tsx`: 地図コンテナの角丸・影調整
+- [x] 📍 **詳細セクションのスタイリング**
+  - [x] `TimelineSection.tsx`: タイムラインを見やすく、かつ可愛く（Bento Grid風配置など検討）
+  - [x] `HotelSection.tsx`: ホテルカードのデザイン（写真映えするレイアウト）
+  - [x] `AdviceSection.tsx`: 持ち物リスト・アドバイスのカード化
+  - [x] `MapSection.tsx`: 地図コンテナの角丸・影調整
 
-- [ ] ✨ **仕上げ**
-  - [ ] アニメーション追加（ふわっと表示、ボタンのインタラクション）
-  - [ ] 全体的な余白・フォントサイズのバランス調整
-  - [ ] スマホ・PCでのレスポンシブ確認
+- [x] ✨ **仕上げ**
+  - [x] アニメーション追加（ふわっと表示、ボタンのインタラクション）
+  - [x] 全体的な余白・フォントサイズのバランス調整
+  - [x] スマホ・PCでのレスポンシブ確認
