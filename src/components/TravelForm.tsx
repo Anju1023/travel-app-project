@@ -171,7 +171,7 @@ export default function TravelForm({
 								value={formData.destination}
 								onChange={(e) => handleChange('destination', e.target.value)}
 								placeholder="例：京都、フランス、沖縄..."
-								className="w-full p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none text-xl text-center placeholder:text-slate-400 group-hover:bg-white/80"
+								className="w-full p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none text-xl text-center placeholder:text-slate-400 group-hover:bg-white/90"
 								autoFocus
 							/>
 							<div className="absolute inset-0 -z-10 bg-linear-to-r from-sky-200 to-cyan-200 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
@@ -200,7 +200,7 @@ export default function TravelForm({
 									<select
 										value={formData.duration}
 										onChange={(e) => handleChange('duration', e.target.value)}
-										className="w-full p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none appearance-none cursor-pointer text-lg text-slate-700 group-hover:bg-white/80"
+										className="w-full p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none appearance-none cursor-pointer text-lg text-slate-700 group-hover:bg-white/90"
 									>
 										<option>日帰り</option>
 										<option>1泊2日</option>
@@ -223,7 +223,7 @@ export default function TravelForm({
 									value={formData.timing}
 									onChange={(e) => handleChange('timing', e.target.value)}
 									placeholder="例：10月下旬、GW、来年の夏..."
-									className="w-full p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none text-lg text-slate-700 placeholder:text-slate-400"
+									className="w-full p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none text-lg text-slate-700 placeholder:text-slate-400 focus:bg-white/90"
 								/>
 							</div>
 						</div>
@@ -251,7 +251,7 @@ export default function TravelForm({
 									<select
 										value={formData.budget}
 										onChange={(e) => handleChange('budget', e.target.value)}
-										className="w-full p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none appearance-none cursor-pointer text-lg text-slate-700"
+										className="w-full p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none appearance-none cursor-pointer text-lg text-slate-700 focus:bg-white/90"
 									>
 										<option>なるべく安く</option>
 										<option>そこそこ（普通）</option>
@@ -374,7 +374,7 @@ export default function TravelForm({
 								value={formData.freeText}
 								onChange={(e) => handleChange('freeText', e.target.value)}
 								placeholder="例：海が見えるカフェに行きたい、歴史的な建物を中心に回りたい..."
-								className="w-full p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none min-h-48 resize-none text-lg text-slate-700 placeholder:text-slate-400 leading-relaxed group-hover:bg-white/80"
+								className="w-full p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-200 focus:border-sky-300 focus:ring-4 focus:ring-sky-100 transition-all outline-none min-h-48 resize-none text-lg text-slate-700 placeholder:text-slate-400 leading-relaxed group-hover:bg-white/90"
 								autoFocus
 							/>
 						</div>
