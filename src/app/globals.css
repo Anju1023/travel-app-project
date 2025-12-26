@@ -1,27 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ocean-blue: #0099FF;
-  --color-deep-ocean: #004d80; /* Text color for better contrast */
-  --color-ice-white: #F0F8FF;
-  --color-lemon-yellow: #FFE600;
-  --color-sunset-orange: #FF6B6B;
-  
-  --animate-bubble: bubble 15s infinite;
-  
-  @keyframes bubble {
-    0% {
-      transform: translateY(100vh) scale(0);
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-10vh) scale(1.5);
-      opacity: 0;
-    }
-  }
+  --color-primary: #0EA5E9; /* Sky Blue 500 - Simple and clean accent */
+  --color-primary-dark: #0284C7; /* Sky Blue 600 - Hover state */
+  --color-text-main: #0F172A; /* Slate 900 - Deep black for text */
+  --color-text-sub: #64748B; /* Slate 500 - Muted text */
+  --color-bg-base: #F8FAFC; /* Slate 50 - Very light grey background */
+  --color-card-bg: #FFFFFF; /* White - Card background */
+  --color-border: #E2E8F0; /* Slate 200 - Light border */
 }
 
 :root {
@@ -31,84 +17,53 @@
 body {
   font-family: var(--font-sans);
   min-height: 100vh;
-  /* Summer Gradient Background */
-  background: linear-gradient(135deg, var(--color-ice-white) 0%, #D4F1F9 50%, var(--color-ocean-blue) 100%);
-  background-attachment: fixed;
-  color: var(--color-deep-ocean); /* Use Deep Ocean for default text */
-  overflow-x: hidden;
-  position: relative;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  /* No gradient background */
 }
 
-/* Bubble Container */
-.bubbles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
+/* Simple Card Utility */
+.simple-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  transition: all 0.2s ease-in-out;
 }
 
-.bubble {
-  position: absolute;
-  bottom: -20px;
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+.simple-card:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
-/* Ice Glass Utility Class */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.75); /* Increased opacity for readability */
-  backdrop-filter: blur(16px); /* Stronger blur */
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 8px 32px 0 rgba(0, 51, 102, 0.1); /* Deeper blue shadow */
-  border-radius: 0.75rem; /* Reduced radius for sharper look (rounded-xl) */
-  /* Glossy highlight */
-  background-image: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.8) 0%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0.2) 51%,
-    rgba(255, 255, 255, 0.6) 100%
-  );
+/* Primary Button Utility */
+.btn-primary {
+  background-color: var(--color-text-main); /* Black button for clean look */
+  color: white;
+  border-radius: 0.5rem; /* rounded-lg */
+  font-weight: 600;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
-/* Button Ripple Effect Helper (Simple CSS version) */
-.btn-ripple {
-  position: relative;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
-  transition: all 0.3s ease;
+.btn-primary:hover {
+  background-color: #334155; /* Slate 700 */
 }
 
-.btn-ripple:active {
-  transform: scale(0.95);
+.btn-primary:disabled {
+  background-color: #94A3B8; /* Slate 400 */
+  cursor: not-allowed;
 }
 
-.btn-ripple::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
-  background-repeat: no-repeat;
-  background-position: 50%;
-  transform: scale(10, 10);
-  opacity: 0;
-  transition: transform .5s, opacity 1s;
+/* Secondary Button Utility */
+.btn-secondary {
+  background-color: white;
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem; /* rounded-lg */
+  font-weight: 500;
+  transition: all 0.2s;
 }
 
-.btn-ripple:active::after {
-  transform: scale(0, 0);
-  opacity: .3;
-  transition: 0s;
+.btn-secondary:hover {
+  background-color: #F1F5F9; /* Slate 100 */
 }

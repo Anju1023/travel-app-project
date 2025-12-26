@@ -83,25 +83,24 @@ export default function Home() {
         あんじゅをワクワクさせるようなキャッチコピーにしているよ！
       */}
       {!plan && (
-        <div className="text-center space-y-4 py-12 px-4">
-          <h1 className="text-4xl md:text-6xl font-black text-[var(--color-deep-ocean)] drop-shadow-sm tracking-tight leading-[1.1] text-balance">
-            次は<span className="text-[var(--color-ocean-blue)]">どこ</span>に<br className="md:hidden"/>行く？
+        <div className="text-center space-y-6 py-16 px-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <h1 className="text-4xl md:text-6xl font-black text-[var(--color-text-main)] tracking-tight leading-[1.1] text-balance">
+            次は<span className="text-[var(--color-primary)]">どこ</span>に行く？
           </h1>
-          <p className="text-base md:text-xl text-[var(--color-deep-ocean)]/80 max-w-lg mx-auto leading-relaxed text-balance font-medium">
+          <p className="text-lg md:text-xl text-[var(--color-text-sub)] max-w-lg mx-auto leading-relaxed text-balance">
             Fuwari が、今のあなたにぴったりの旅行プランを瞬時に提案します。✨
           </p>
         </div>
       )}
 
       {/* 
-        トラブル発生！エラーメッセージをおしゃれに表示するよ 
-        怖くないように、優しい水色と警告のオレンジを混ぜたデザインにしたよ。
+        トラブル発生！エラーメッセージを表示
       */}
       {error && (
-        <div className="glass-panel w-full max-w-2xl p-6 bg-red-500/10 text-red-600 rounded-xl border border-red-200/50 shadow-sm flex items-start gap-4 backdrop-blur-md">
-          <AlertCircle className="w-6 h-6 shrink-0 mt-0.5 text-red-500" />
+        <div className="simple-card w-full max-w-2xl p-6 border-red-200 bg-red-50 text-red-700 flex items-start gap-4">
+          <AlertCircle className="w-6 h-6 shrink-0 mt-0.5 text-red-600" />
           <div className="space-y-1">
-            <p className="font-bold text-lg text-red-600">おっと、トラブル発生かな？</p>
+            <p className="font-bold text-lg">エラーが発生しました</p>
             <p className="text-sm opacity-90">{error}</p>
           </div>
         </div>

@@ -3,12 +3,12 @@ import { Plane } from 'lucide-react';
 
 export default function Header() {
 	return (
-		<header className="sticky top-0 z-50 w-full py-3 px-6 flex items-center justify-between glass-panel rounded-none border-t-0 border-x-0 border-b border-white/40 mb-4">
+		<header className="sticky top-0 z-50 w-full py-4 px-6 flex items-center justify-between bg-[var(--color-bg-base)]/80 backdrop-blur-md border-b border-[var(--color-border)] mb-4">
 			<Link href="/" className="flex items-center gap-2 group">
-				<div className="p-2 bg-gradient-to-br from-[var(--color-ice-white)] to-white rounded-full shadow-md group-hover:scale-110 transition-transform duration-300">
-					<Plane className="w-5 h-5 text-[var(--color-ocean-blue)] transform -rotate-45" />
+				<div className="p-2 bg-[var(--color-text-main)] rounded-lg shadow-sm transition-transform duration-200 group-hover:scale-105">
+					<Plane className="w-5 h-5 text-white transform -rotate-45" />
 				</div>
-				<span className="text-xl font-bold bg-gradient-to-r from-[var(--color-ocean-blue)] to-[var(--color-deep-ocean)] bg-clip-text text-transparent">
+				<span className="text-xl font-bold text-[var(--color-text-main)] tracking-tight">
 					Fuwari
 				</span>
 			</Link>

@@ -40,17 +40,17 @@ export default function PlanResult({
 		<div className="space-y-12 py-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
 			{/* Title & Copy */}
 			<div className="text-center space-y-4">
-				<h2 className="text-3xl font-bold text-[var(--color-deep-ocean)] drop-shadow-sm">
+				<h2 className="text-3xl font-bold text-[var(--color-text-main)]">
 					{plan.title}
 				</h2>
 				<button
 					onClick={handleCopy}
 					className={`
-						inline-flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-medium border transition-all shadow-sm
+						inline-flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-medium border transition-all
 						${
 							copied
-								? 'bg-[var(--color-lemon-yellow)] text-[var(--color-deep-ocean)] border-[var(--color-ocean-blue)]'
-								: 'bg-white/70 text-[var(--color-ocean-blue)] border-white/60 hover:bg-white hover:scale-105'
+								? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+								: 'bg-white text-[var(--color-text-sub)] border-[var(--color-border)] hover:bg-gray-50'
 						}
 					`}
 				>
@@ -77,7 +77,7 @@ export default function PlanResult({
 			<div className="flex justify-center pt-8">
 				<button
 					onClick={onReset}
-					className="btn-ripple flex items-center gap-2 px-8 py-3 rounded-lg bg-white/40 text-[var(--color-deep-ocean)] font-bold border border-white/60 hover:bg-white/70 transition-colors shadow-lg"
+					className="btn-secondary px-8 py-3 flex items-center gap-2"
 				>
 					<Repeat className="w-4 h-4" />
 					もう一度作る

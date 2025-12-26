@@ -24,21 +24,21 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 				return (
 					<div
 						key={day.day}
-						className="glass-panel overflow-hidden transition-all duration-500 hover:scale-[1.01]"
+						className="simple-card overflow-hidden"
 					>
 						{/* ヘッダーボタン */}
 						<button
 							onClick={() => toggleDay(day.day)}
-							className="w-full p-6 flex items-center justify-between text-left hover:bg-white/40 transition-colors group"
+							className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 transition-colors group"
 						>
-							<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] flex items-center gap-4">
+							<h3 className="text-xl font-bold text-[var(--color-text-main)] flex items-center gap-4">
 								<span
 									className={`
-                  w-10 h-10 rounded-lg flex items-center justify-center text-base font-black shadow-sm transition-all duration-300
+                  w-10 h-10 rounded-lg flex items-center justify-center text-base font-bold transition-all duration-300
                   ${
 										isOpen
-											? 'bg-gradient-to-br from-[var(--color-lemon-yellow)] to-[var(--color-sunset-orange)] text-white rotate-12'
-											: 'bg-white/80 text-[var(--color-ocean-blue)]'
+											? 'bg-[var(--color-text-main)] text-white shadow-sm'
+											: 'bg-gray-100 text-[var(--color-text-sub)]'
 									}
                 `}
 								>
@@ -48,7 +48,7 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 							</h3>
 							<div
 								className={`p-2 rounded-lg transition-all duration-300 ${
-									isOpen ? 'bg-white/50 text-[var(--color-ocean-blue)]' : 'text-[var(--color-ocean-blue)]/50'
+									isOpen ? 'bg-gray-100 text-[var(--color-text-main)]' : 'text-gray-400'
 								}`}
 							>
 								<ChevronDown
@@ -68,33 +68,32 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 							}`}
 						>
 							<div className="p-8 pt-0">
-								<div className="space-y-10 relative pl-4 border-l-2 border-white/40 ml-4 pt-4">
+								<div className="space-y-10 relative pl-4 border-l-2 border-gray-100 ml-4 pt-4">
 									{day.schedule.map((item, i) => (
 										<div key={i} className="relative pl-8 group">
-											{/* ふわっと光るドット */}
-											<div className="absolute -left-[1.85rem] top-1.5 w-5 h-5 rounded-full bg-white border-4 border-[var(--color-ocean-blue)]/50 shadow-sm group-hover:border-[var(--color-ocean-blue)] group-hover:scale-125 transition-all duration-300" />
+											{/* ドット */}
+											<div className="absolute -left-[1.85rem] top-1.5 w-5 h-5 rounded-full bg-white border-4 border-[var(--color-primary)] shadow-sm group-hover:scale-110 transition-all duration-300" />
 
 											<div className="flex flex-col sm:flex-row sm:items-baseline gap-2 mb-2">
-												<div className="flex items-center gap-1.5 text-[var(--color-ocean-blue)] font-black text-sm tracking-wider">
+												<div className="flex items-center gap-1.5 text-[var(--color-primary)] font-bold text-sm tracking-wider">
 													<Clock className="w-4 h-4" />
 													{item.time}
 												</div>
-												<div className="font-bold text-xl text-[var(--color-deep-ocean)] tracking-tight">
-													{/* 場所名をクリックするとGoogle検索できるようにしたよ！🔍 */}
+												<div className="font-bold text-xl text-[var(--color-text-main)] tracking-tight">
 													<a
 														href={`https://www.google.com/search?q=${encodeURIComponent(
 															item.place
 														)}`}
 														target="_blank"
 														rel="noopener noreferrer"
-														className="hover:text-[var(--color-sunset-orange)] transition-colors cursor-pointer decoration-[var(--color-ocean-blue)]/30 underline-offset-8 hover:underline decoration-2"
+														className="hover:text-[var(--color-primary-dark)] transition-colors cursor-pointer underline-offset-4 hover:underline decoration-2 decoration-gray-200"
 														title="Googleで検索する"
 													>
 														{item.place}
 													</a>
 												</div>
 											</div>
-											<p className="text-[var(--color-deep-ocean)]/80 text-sm leading-relaxed font-medium">
+											<p className="text-[var(--color-text-main)]/80 text-sm leading-relaxed font-medium">
 												{item.description}
 											</p>
 										</div>

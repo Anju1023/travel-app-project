@@ -15,9 +15,9 @@ export default function AdviceSection({
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 			{/* 持ち物チェックリスト 🎒 */}
-			<div className="glass-panel p-6 md:p-8 rounded-xl shadow-sm">
-				<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] mb-6 flex items-center gap-3">
-					<div className="p-2 bg-white/50 rounded-lg text-[var(--color-ocean-blue)] shadow-sm">
+			<div className="simple-card p-6 md:p-8">
+				<h3 className="text-xl font-bold text-[var(--color-text-main)] mb-6 flex items-center gap-3">
+					<div className="p-2 bg-gray-100 rounded-lg text-[var(--color-text-main)]">
 						<Luggage className="w-6 h-6" />
 					</div>
 					持って行くと便利なもの
@@ -26,13 +26,12 @@ export default function AdviceSection({
 					{packingList.map((item, i) => (
 						<div
 							key={i}
-							className="flex items-start gap-4 p-4 bg-white/40 rounded-lg hover:bg-white/60 transition-all group border border-white/40 hover:border-white/80"
+							className="flex items-start gap-4 p-4 bg-white border border-[var(--color-border)] rounded-lg hover:bg-gray-50 transition-all group"
 						>
-							{/* shrink-0 をつけて、丸が潰れないように固定するよ！ */}
-							<div className="w-6 h-6 rounded-full border-2 border-[var(--color-ocean-blue)]/30 flex items-center justify-center group-hover:border-[var(--color-ocean-blue)] transition-colors shrink-0 mt-0.5 bg-white shadow-sm">
-								<CheckCircle2 className="w-4 h-4 text-[var(--color-ocean-blue)] opacity-0 group-hover:opacity-100 transition-opacity" />
+							<div className="w-6 h-6 rounded-full border-2 border-gray-200 flex items-center justify-center group-hover:border-[var(--color-primary)] transition-colors shrink-0 mt-0.5 bg-white">
+								<CheckCircle2 className="w-4 h-4 text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity" />
 							</div>
-							<span className="text-sm font-medium text-[var(--color-deep-ocean)]/90 leading-relaxed">
+							<span className="text-sm font-medium text-[var(--color-text-main)] leading-relaxed">
 								{item}
 							</span>
 						</div>
@@ -41,9 +40,9 @@ export default function AdviceSection({
 			</div>
 
 			{/* 旅のアドバイス 💡 */}
-			<div className="glass-panel p-6 md:p-8 rounded-xl shadow-sm">
-				<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] mb-6 flex items-center gap-3">
-					<div className="p-2 bg-white/50 rounded-lg text-[var(--color-lemon-yellow)] shadow-sm">
+			<div className="simple-card p-6 md:p-8">
+				<h3 className="text-xl font-bold text-[var(--color-text-main)] mb-6 flex items-center gap-3">
+					<div className="p-2 bg-gray-100 rounded-lg text-[var(--color-text-main)]">
 						<Lightbulb className="w-6 h-6" />
 					</div>
 					旅のアドバイス
@@ -51,9 +50,8 @@ export default function AdviceSection({
 				<div className="space-y-5">
 					{advice.map((item, i) => (
 						<div key={i} className="relative pl-6 group">
-							{/* 装飾用のライン */}
-							<div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--color-lemon-yellow)] to-[var(--color-sunset-orange)] rounded-full transition-all duration-300" />
-							<p className="text-sm leading-relaxed text-[var(--color-deep-ocean)]/80 font-medium italic">
+							<div className="absolute left-0 top-0 bottom-0 w-1 bg-gray-200 rounded-full group-hover:bg-[var(--color-primary)] transition-colors duration-300" />
+							<p className="text-sm leading-relaxed text-[var(--color-text-sub)] font-medium italic">
 								“ {item} ”
 							</p>
 						</div>

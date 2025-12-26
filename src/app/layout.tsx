@@ -3,7 +3,6 @@ import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import BackgroundBubbles from "@/components/BackgroundBubbles";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-sans",
@@ -24,9 +23,8 @@ export default function RootLayout({
   return (
     <html lang="ja" suppressHydrationWarning>
       <body
-        className={`${notoSansJP.variable} antialiased min-h-screen flex flex-col`}
+        className={`${notoSansJP.variable} antialiased min-h-screen flex flex-col bg-gray-50 text-slate-900`}
       >
-        <BackgroundBubbles />
         <Header />
         <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-8">
           {children}
