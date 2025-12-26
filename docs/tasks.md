@@ -200,21 +200,21 @@
 
 **ゴール**: コンセプトの統一感を高め、細部まで「かわいさ」と「使いやすさ」を行き渡らせる。
 
-- [ ] 🔤 **フォント変更 (Zen Maru Gothic)**
-  - [ ] `layout.tsx`: `next/font/google` から `Zen_Maru_Gothic` をインポートして適用。
-  - [ ] `globals.css`: フォント設定の調整。
+- [x] 🔤 **フォント変更 (Zen Maru Gothic)**
+  - [x] `layout.tsx`: `next/font/google` から `Zen_Maru_Gothic` をインポートして適用。
+  - [x] `globals.css`: フォント設定の調整。
 
-- [ ] 🎨 **テーマカラー統一 (Sky Blue Base)**
-  - [ ] `TravelForm.tsx`: ステップごとのバラバラな色（Rose, Amber, Violet等）を廃止し、`Sky-500` (メイン) & `Rose-400` (アクセント) に統一。
-  - [ ] `TravelForm.tsx`: プログレスバーの色味調整。
+- [x] 🎨 **テーマカラー統一 (Sky Blue Base)**
+  - [x] `TravelForm.tsx`: ステップごとのバラバラな色（Rose, Amber, Violet等）を廃止し、`Sky-500` (メイン) & `Rose-400` (アクセント) に統一。
+  - [x] `TravelForm.tsx`: プログレスバーの色味調整。
 
-- [ ] 📱 **フォームUI改善 (タップしやすさ)**
-  - [ ] `TravelForm.tsx`: 選択肢カードのパディング増量とレイアウト調整。
-  - [ ] `TravelForm.tsx`: 選択時のスタイル (`ring`, `bg`) をよりリッチに強調。
+- [x] 📱 **フォームUI改善 (タップしやすさ)**
+  - [x] `TravelForm.tsx`: 選択肢カードのパディング増量とレイアウト調整。
+  - [x] `TravelForm.tsx`: 選択時のスタイル (`ring`, `bg`) をよりリッチに強調。
 
-- [ ] 🗺️ **カスタムマーカーの実装 (Leaflet)**
-  - [ ] `MapSection.tsx`: `L.divIcon` を使用して、React Icons (Lucide) を埋め込んだカスタムピンを作成。
-  - [ ] `MapSection.tsx`: スポット用（青/Sky）とホテル用（ピンク/Rose）でピンの色を分ける。
+- [x] 🗺️ **カスタムマーカーの実装 (Leaflet)**
+  - [x] `MapSection.tsx`: `L.divIcon` を使用して、React Icons (Lucide) を埋め込んだカスタムピンを作成。
+  - [x] `MapSection.tsx`: スポット用（青/Sky）とホテル用（ピンク/Rose）でピンの色を分ける。
 
-- [ ] 🧹 **最終コードクリーンアップ**
-  - [ ] 未使用のインポート削除や細かい修正。
+- [x] 🧹 **最終コードクリーンアップ**
+  - [x] 未使用のインポート削除や細かい修正。
