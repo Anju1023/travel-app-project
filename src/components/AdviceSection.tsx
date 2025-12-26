@@ -3,7 +3,6 @@ import { PlanData } from '@/types/plan';
 
 /**
  * 持ち物リストとアドバイスを表示するコンポーネント
- * 旅の準備をサポートする「気が利く」セクションだよ！🎒✨
  */
 export default function AdviceSection({
 	packingList,
@@ -23,7 +22,7 @@ export default function AdviceSection({
 					<div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg">
 						<Luggage size={18} />
 					</div>
-					持って行くと便利なもの
+					推奨する持ち物
 				</h3>
 				<div className="space-y-3 relative z-10">
 					{packingList.map((item, i) => (
@@ -51,7 +50,7 @@ export default function AdviceSection({
 					<div className="p-2 bg-amber-100 text-amber-500 rounded-lg">
 						<Lightbulb size={18} />
 					</div>
-					旅のアドバイス
+					旅行へのアドバイス
 				</h3>
 				<div className="space-y-4 relative z-10">
 					{advice.map((item, i) => (

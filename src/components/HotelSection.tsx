@@ -15,7 +15,7 @@ export default function HotelSection({
 				<div className="p-2 bg-indigo-100 text-indigo-600 rounded-lg">
 					<Hotel size={20} />
 				</div>
-				おすすめの宿泊先
+				おすすめの宿泊施設
 			</h3>
 			
 			<div className="grid gap-4 sm:grid-cols-2">
@@ -60,7 +60,7 @@ export default function HotelSection({
 
 						<div className="pt-4 border-t border-slate-50 flex justify-between items-end">
 							<div className="text-xs text-slate-400 font-medium">
-								宿泊目安
+								価格の目安
 							</div>
 							<div className="font-bold text-indigo-600 text-lg">
 								{hotel.price}

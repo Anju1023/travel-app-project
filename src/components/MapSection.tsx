@@ -15,14 +15,11 @@ import { MapPin, Hotel } from 'lucide-react';
 export default function MapSection({ plan }: { plan: PlanData }) {
 	// マーカーのアイコン設定 (L.divIcon を使用)
 	const createCustomIcon = (type: 'spot' | 'hotel') => {
-		// サーバーサイドレンダリング時は null を返す (Leaflet はクライアントのみ)
 		if (typeof window === 'undefined') return null;
 
-		// Leaflet を動的にインポート
 		// eslint-disable-next-line @typescript-eslint/no-var-requires
 		const L = require('leaflet');
 
-		// アイコンの色と中身を決定
 		const colorClass = type === 'hotel' ? 'bg-rose-500' : 'bg-sky-500';
 		const iconComponent =
 			type === 'hotel' ? (
@@ -31,7 +28,6 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 				<MapPin size={16} color="white" strokeWidth={3} />
 			);
 
-		// HTML文字列としてアイコンを作成
 		const iconHtml = renderToString(
 			<div
 				className={`
@@ -53,14 +49,13 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 
 		return L.divIcon({
 			html: iconHtml,
-			className: 'custom-marker-icon', // デフォルトのスタイルを無効化するために必要
+			className: 'custom-marker-icon',
 			iconSize: [32, 32],
-			iconAnchor: [16, 38], // ピンの先端が座標に来るように調整
+			iconAnchor: [16, 38],
 			popupAnchor: [0, -38],
 		});
 	};
 
-	// 全てのスポット（タイムラインとホテル）を一つのリストにまとめるよ
 	const allSpots = [
 		...plan.days.flatMap((day) =>
 			day.schedule.map((s) => ({ ...s, type: 'spot' as const }))
@@ -72,7 +67,6 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 		})),
 	];
 
-	// 地図の初期中心位置
 	const centerPos: [number, number] =
 		allSpots.length > 0
 			? [allSpots[0].lat, allSpots[0].lng]
@@ -88,7 +82,7 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 					旅のマップ
 				</h3>
 				<span className="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
-					{allSpots.length} スポット
+					全 {allSpots.length} スポット
 				</span>
 			</div>
 
@@ -106,15 +100,7 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 					/>
 
 					{allSpots.map((spot, i) => {
-						// サーバーサイドでのエラー回避のため、useEffect外でLを使わない工夫が必要だけど、
-						// 今回は簡易的に動的インポートしたLを使うコンポーネントにするか、
-						// あるいはカスタムアイコン生成関数内で require('leaflet') している。
-						// (MapContainer内はクライアントサイド実行が保証されるため)
-
-						// ⚠️ 注意: createCustomIcon はレンダリング毎に呼ばれると重いので、
-						// 本来は useMemo など推奨だけど、今回は個数が少ないので直接呼ぶね。
 						const icon = createCustomIcon(spot.type);
-
 						if (!icon) return null;
 
 						return (
@@ -140,7 +126,7 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 													: 'bg-sky-100 text-sky-500'
 											}`}
 										>
-											{spot.type === 'hotel' ? '🏨 HOTEL' : '📍 SPOT'}
+											{spot.type === 'hotel' ? '宿泊先' : 'スポット'}
 										</div>
 									</div>
 								</Popup>
@@ -151,7 +137,7 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 			</div>
 			<div className="p-2 bg-slate-50 text-center border-t border-slate-100">
 				<p className="text-xs text-slate-400 font-medium">
-					ピンをタップすると場所の名前が見れるよ！📍
+					ピンをタップすると詳細が表示されます
 				</p>
 			</div>
 		</div>

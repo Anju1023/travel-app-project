@@ -4,20 +4,20 @@ import { useState } from 'react';
 import TravelForm from '@/components/TravelForm';
 import PlanResult from '@/components/PlanResult';
 import { PlanData, TravelFormData } from '@/types/plan';
-import { AlertCircle } from 'lucide-react'; // エラー用のアイコンを追加
+import { AlertCircle } from 'lucide-react';
 
 /**
  * メインのページコンポーネント (Home)
- * アプリの顔となる部分だよ！
- * 入力フォームと生成結果の切り替え、APIとの通信をここで管理しているよ。
+ * アプリの顔となる部分です。
+ * 入力フォームと生成結果の切り替え、APIとの通信をここで管理しています。
  */
 export default function Home() {
   // --- ステート（状態）の定義 ---
   
-  // AIが作ってくれた旅行プランを保存する場所だよ
+  // AIが作成した旅行プランを保存する場所
   const [plan, setPlan] = useState<PlanData | null>(null);
   
-  // 何かトラブルがあった時に、あんじゅに伝えるメッセージを保存するよ
+  // エラーメッセージを保存する場所
   const [error, setError] = useState<string | null>(null);
 
   /**
@@ -25,11 +25,11 @@ export default function Home() {
    * @param data フォームから送られてきた旅行の条件
    */
   const handleCreatePlan = async (data: TravelFormData) => {
-    // 新しく作り直すから、前のエラーは消しておくね！
+    // エラー状態をリセット
     setError(null);
     
     try {
-      // 自作したAPI (/api/plan) に「こんなプラン作って！」ってお願いするよ
+      // 自作したAPI (/api/plan) にリクエストを送信
       const response = await fetch('/api/plan', {
         method: 'POST',
         headers: {
@@ -38,40 +38,39 @@ export default function Home() {
         body: JSON.stringify(data),
       });
 
-      // もしAPIが「今は無理だよ〜」って言ってきたら（エラー）、その理由を教えてもらうよ
+      // エラーハンドリング
       if (!response.ok) {
         const errData = await response.json();
-        throw new Error(errData.error || 'プランの生成に失敗しちゃいました...。');
+        throw new Error(errData.error || 'プランの生成に失敗しました。');
       }
 
-      // 成功！AIが作ってくれたプランを受け取るよ
+      // 成功時、プランデータを受け取る
       const planData: PlanData = await response.json();
       setPlan(planData);
       
-      // 画面の一番上までスクロールして、結果を見やすくするよ！✨
+      // 画面上部へスクロール
       window.scrollTo({ top: 0, behavior: 'smooth' });
       
     } catch (err: unknown) {
-      // 想定外のトラブルが起きた時のためのバックアップ
       console.error('Frontend Error:', err);
       
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError('予期せぬエラーが発生しました。もう一度試してみてね！');
+        setError('予期せぬエラーが発生しました。もう一度お試しください。');
       }
     }
   };
 
   /**
    * 「もう一度作る」ボタンが押された時の処理
-   * 画面をリセットして、最初のフォームに戻るよ！
+   * 画面をリセットして、最初のフォームに戻ります。
    */
   const handleReset = () => {
     setPlan(null);
     setError(null);
     
-    // フォームに戻った時も上までスクロール！
+    // 画面上部へスクロール
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -79,22 +78,21 @@ export default function Home() {
     <div className="space-y-8 animate-in fade-in duration-700">
       
       {/* 
-        まだプランがない時（最初の画面）に表示するヘッダーセクション 
-        あんじゅをワクワクさせるようなキャッチコピーにしているよ！
+        ヘッダーセクション 
       */}
       {!plan && (
         <div className="text-center space-y-4 py-8">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-800">
-            次は<span className="text-transparent bg-clip-text bg-linear-to-r from-sky-400 to-sky-600">どこ</span>に行く？
+            次は<span className="text-transparent bg-clip-text bg-linear-to-r from-sky-400 to-sky-600">どこ</span>へ行きますか？
           </h1>
           <p className="text-slate-500 text-lg font-medium max-w-lg mx-auto leading-relaxed">
-            Fuwari が、今のあなたにぴったりの<br className="sm:hidden"/>旅行プランを瞬時に提案します。✨
+            Fuwari が、今のあなたにぴったりの<br className="sm:hidden"/>旅行プランを提案します。
           </p>
         </div>
       )}
 
       {/* 
-        トラブル発生！エラーメッセージを表示
+        エラーメッセージ表示エリア
       */}
       {error && (
         <div className="bg-rose-50 border border-rose-200 text-rose-600 px-6 py-4 rounded-2xl flex items-start gap-3 animate-in shake">
@@ -108,7 +106,6 @@ export default function Home() {
 
       {/* 
         メインコンテンツエリア
-        プランがあれば「結果画面」、なければ「入力フォーム」を出すように切り替えてるよ！
       */}
       <div>
         {plan ? (

@@ -8,7 +8,6 @@ import {
 	Users,
 	Heart,
 	Sparkles,
-	Luggage,
 	User,
 	Baby,
 	Coffee,
@@ -26,14 +25,12 @@ import {
 import { TravelFormData } from '@/types/plan';
 
 const LOADING_MESSAGES = [
-	'プランを考え中...💭',
-	'カフェを探し中...☕️',
-	'スポットを厳選中...📸',
-	'ルートを計算中...🗺️',
-	'隠れ家を調査中...🤫',
-	'宿をピックアップ中...🏨',
-	'しおりを執筆中...✍️',
-	'ワクワクを詰め込み中...✨',
+	'プランを作成しています...',
+	'カフェを探しています...',
+	'スポットを選定しています...',
+	'ルートを計算しています...',
+	'おすすめの宿を探しています...',
+	'旅のしおりを作成しています...',
 ];
 
 const COMPANION_OPTIONS = [
@@ -49,7 +46,7 @@ const STYLE_OPTIONS = [
 	{ label: 'グルメ', icon: Utensils },
 	{ label: '観光名所', icon: Landmark },
 	{ label: '穴場スポット', icon: Compass },
-	{ label: '映え', icon: Camera },
+	{ label: '映えスポット', icon: Camera },
 ];
 
 export default function TravelForm({
@@ -141,10 +138,10 @@ export default function TravelForm({
 									<MapPin size={32} strokeWidth={2.5} />
 								</div>
 								<h3 className="text-2xl font-bold text-slate-800">
-									どこに行きたい？
+									目的地
 								</h3>
 								<p className="text-slate-500 mt-2 font-medium">
-									行ってみたい国や都市を教えてね
+									行ってみたい国や都市を入力してください
 								</p>
 							</div>
 							<div className="max-w-md mx-auto">
@@ -168,14 +165,14 @@ export default function TravelForm({
 									<Calendar size={32} strokeWidth={2.5} />
 								</div>
 								<h3 className="text-2xl font-bold text-slate-800">
-									いつ、どれくらい？
+									日程と期間
 								</h3>
 							</div>
 
 							<div className="max-w-md mx-auto space-y-6">
 								<div>
 									<label className="block text-sm font-bold text-slate-600 mb-2 ml-1">
-										何泊する？
+										宿泊数
 									</label>
 									<div className="relative">
 										<select
@@ -197,7 +194,7 @@ export default function TravelForm({
 
 								<div>
 									<label className="block text-sm font-bold text-slate-600 mb-2 ml-1">
-										いつ頃行く？
+										旅行時期
 									</label>
 									<input
 										type="text"
@@ -219,14 +216,14 @@ export default function TravelForm({
 									<Wallet size={32} strokeWidth={2.5} />
 								</div>
 								<h3 className="text-2xl font-bold text-slate-800">
-									予算とメンバーは？
+									予算と人数
 								</h3>
 							</div>
 
 							<div className="max-w-md mx-auto space-y-6">
 								<div>
 									<label className="block text-sm font-bold text-slate-600 mb-2 ml-1">
-										予算感
+										予算の目安
 									</label>
 									<div className="relative">
 										<select
@@ -247,7 +244,7 @@ export default function TravelForm({
 
 								<div>
 									<label className="block text-sm font-bold text-slate-600 mb-2 ml-1">
-										誰と行く？
+										同行者
 									</label>
 									<div className="grid grid-cols-2 gap-4">
 										{COMPANION_OPTIONS.map((item) => (
@@ -294,10 +291,10 @@ export default function TravelForm({
 									<Heart size={32} strokeWidth={2.5} />
 								</div>
 								<h3 className="text-2xl font-bold text-slate-800">
-									どんな旅にしたい？
+									旅のスタイル
 								</h3>
 								<p className="text-slate-500 mt-2 text-sm font-medium">
-									気になるものをいくつでも選んでね
+									気になるテーマを選んでください（複数可）
 								</p>
 							</div>
 
@@ -313,7 +310,7 @@ export default function TravelForm({
                                                     cursor-pointer p-3 py-4 rounded-2xl border-2 transition-all flex flex-col items-center gap-2 text-center select-none group
                                                     ${
 																											isSelected
-																												? 'border-rose-400 bg-rose-50 text-rose-700 ring-4 ring-rose-100' // ここだけアクセントでRose(ピンク)を使う！
+																												? 'border-rose-400 bg-rose-50 text-rose-700 ring-4 ring-rose-100'
 																												: 'border-slate-100 bg-white text-slate-500 hover:border-rose-200 hover:bg-rose-50/50 hover:text-rose-600'
 																										}
                                                 `}
@@ -347,7 +344,7 @@ export default function TravelForm({
 									その他のこだわり
 								</h3>
 								<p className="text-slate-500 mt-2 font-medium">
-									わがまま、全部教えて？
+									ご要望があれば自由に入力してください
 								</p>
 							</div>
 							<div className="max-w-md mx-auto">
