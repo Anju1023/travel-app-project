@@ -76,19 +76,19 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="space-y-8 animate-in fade-in duration-700">
       
       {/* 
         まだプランがない時（最初の画面）に表示するヘッダーセクション 
         あんじゅをワクワクさせるようなキャッチコピーにしているよ！
       */}
       {!plan && (
-        <div>
-          <h1>
-            次は<span>どこ</span>に行く？
+        <div className="text-center space-y-4 py-8">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-800">
+            次は<span className="text-transparent bg-clip-text bg-linear-to-r from-sky-400 to-sky-600">どこ</span>に行く？
           </h1>
-          <p>
-            Fuwari が、今のあなたにぴったりの旅行プランを瞬時に提案します。✨
+          <p className="text-slate-500 text-lg font-medium max-w-lg mx-auto leading-relaxed">
+            Fuwari が、今のあなたにぴったりの<br className="sm:hidden"/>旅行プランを瞬時に提案します。✨
           </p>
         </div>
       )}
@@ -97,11 +97,11 @@ export default function Home() {
         トラブル発生！エラーメッセージを表示
       */}
       {error && (
-        <div>
-          <AlertCircle />
+        <div className="bg-rose-50 border border-rose-200 text-rose-600 px-6 py-4 rounded-2xl flex items-start gap-3 animate-in shake">
+          <AlertCircle className="shrink-0 mt-0.5" />
           <div>
-            <p>エラーが発生しました</p>
-            <p>{error}</p>
+            <p className="font-bold">エラーが発生しました</p>
+            <p className="text-sm opacity-90">{error}</p>
           </div>
         </div>
       )}
