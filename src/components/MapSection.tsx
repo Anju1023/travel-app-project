@@ -48,20 +48,26 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 			: [35.6812, 139.7671]; // スポットがない時は東京駅付近
 
 	return (
-		<div>
-			<h3>
-				<div>
-					<LucideMap />
-				</div>
-				旅のマップ
-			</h3>
+		<div className="flex flex-col h-full">
+			<div className="p-4 border-b border-slate-100 flex items-center justify-between bg-white">
+                <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800">
+                    <div className="p-2 bg-slate-100 text-slate-600 rounded-lg">
+                        <LucideMap size={18} />
+                    </div>
+                    旅のマップ
+                </h3>
+                <span className="text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded">
+                    {allSpots.length} スポット
+                </span>
+            </div>
 
-			<div>
+			<div className="h-80 md:h-96 w-full relative z-0">
 				<MapContainer
 					center={centerPos}
 					zoom={13}
 					scrollWheelZoom={false}
 					style={{ height: '100%', width: '100%' }}
+                    className="z-0"
 				>
 					<TileLayer
 						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -71,19 +77,20 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 					{allSpots.map((spot, i) => (
 						<Marker key={i} position={[spot.lat, spot.lng]}>
 							<Popup>
-								<div>
-									<div>
+								<div className="text-center p-1 min-w-[150px]">
+									<div className="font-bold text-sm mb-1 text-slate-800">
 										<a
 											href={`https://www.google.com/search?q=${encodeURIComponent(
 												spot.place
 											)}`}
 											target="_blank"
 											rel="noopener noreferrer"
+                                            className="hover:text-sky-500 hover:underline"
 										>
 											{spot.place}
 										</a>
 									</div>
-									<div>
+									<div className="text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-full inline-block bg-slate-100 text-slate-500">
 										{spot.type === 'hotel' ? '🏨 HOTEL' : '📍 SPOT'}
 									</div>
 								</div>
@@ -92,9 +99,11 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 					))}
 				</MapContainer>
 			</div>
-			<p>
-				ピンをタップすると場所の名前が見れるよ！📍
-			</p>
+			<div className="p-2 bg-slate-50 text-center border-t border-slate-100">
+			    <p className="text-xs text-slate-400">
+				    ピンをタップすると場所の名前が見れるよ！📍
+			    </p>
+            </div>
 		</div>
 	);
 }
