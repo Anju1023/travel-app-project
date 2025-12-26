@@ -46,7 +46,7 @@ export default function PlanResult({
 				<button
 					onClick={handleCopy}
 					className={`
-						inline-flex items-center gap-2 px-6 py-2 rounded-full text-sm font-medium border transition-all shadow-sm
+						inline-flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-medium border transition-all shadow-sm
 						${
 							copied
 								? 'bg-[var(--color-lemon-yellow)] text-[var(--color-deep-ocean)] border-[var(--color-ocean-blue)]'
@@ -77,7 +77,7 @@ export default function PlanResult({
 			<div className="flex justify-center pt-8">
 				<button
 					onClick={onReset}
-					className="btn-ripple flex items-center gap-2 px-8 py-3 rounded-full bg-white/40 text-[var(--color-deep-ocean)] font-bold border border-white/60 hover:bg-white/70 transition-colors shadow-lg"
+					className="btn-ripple flex items-center gap-2 px-8 py-3 rounded-lg bg-white/40 text-[var(--color-deep-ocean)] font-bold border border-white/60 hover:bg-white/70 transition-colors shadow-lg"
 				>
 					<Repeat className="w-4 h-4" />
 					もう一度作る

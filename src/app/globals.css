@@ -67,7 +67,7 @@ body {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 8px 32px 0 rgba(0, 51, 102, 0.1); /* Deeper blue shadow */
-  border-radius: 1.5rem;
+  border-radius: 0.75rem; /* Reduced radius for sharper look (rounded-xl) */
   /* Glossy highlight */
   background-image: linear-gradient(
     135deg,

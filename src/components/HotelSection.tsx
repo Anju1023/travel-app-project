@@ -10,9 +10,9 @@ export default function HotelSection({
 	hotels: PlanData['hotels'];
 }) {
 	return (
-		<div className="glass-panel p-6 md:p-8 rounded-3xl shadow-sm">
+		<div className="glass-panel p-6 md:p-8 rounded-xl shadow-sm">
 			<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] mb-8 flex items-center gap-3">
-				<div className="p-2 bg-white/50 rounded-xl text-[var(--color-ocean-blue)] shadow-sm">
+				<div className="p-2 bg-white/50 rounded-lg text-[var(--color-ocean-blue)] shadow-sm">
 					<Hotel className="w-6 h-6" />
 				</div>
 				おすすめの宿泊先
@@ -21,7 +21,7 @@ export default function HotelSection({
 				{hotels.map((hotel, i) => (
 					<div
 						key={i}
-						className="p-5 md:p-6 bg-white/40 rounded-3xl flex flex-col md:flex-row gap-6 items-start md:items-center justify-between hover:bg-white/70 transition-all duration-300 border border-white/40 hover:border-white/80 hover:scale-[1.01] group"
+						className="p-5 md:p-6 bg-white/40 rounded-xl flex flex-col md:flex-row gap-6 items-start md:items-center justify-between hover:bg-white/70 transition-all duration-300 border border-white/40 hover:border-white/80 hover:scale-[1.01] group"
 					>
 						<div className="space-y-4 flex-1">
 							<div>

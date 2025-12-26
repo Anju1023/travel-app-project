@@ -85,11 +85,10 @@ export default function Home() {
       {!plan && (
         <div className="text-center space-y-4 py-12 px-4">
           <h1 className="text-4xl md:text-6xl font-black text-[var(--color-deep-ocean)] drop-shadow-sm tracking-tight leading-[1.1] text-balance">
-            今年の夏は、<br className="md:hidden"/>
-            <span className="bg-gradient-to-r from-[var(--color-ocean-blue)] to-[var(--color-sunset-orange)] bg-clip-text text-transparent drop-shadow-sm">どこ</span>に行く？
+            次は<span className="text-[var(--color-ocean-blue)]">どこ</span>に<br className="md:hidden"/>行く？
           </h1>
           <p className="text-base md:text-xl text-[var(--color-deep-ocean)]/80 max-w-lg mx-auto leading-relaxed text-balance font-medium">
-            Fuwari が、最高の夏休みプランを瞬時に提案します。🍹✨
+            Fuwari が、今のあなたにぴったりの旅行プランを瞬時に提案します。✨
           </p>
         </div>
       )}
@@ -99,7 +98,7 @@ export default function Home() {
         怖くないように、優しい水色と警告のオレンジを混ぜたデザインにしたよ。
       */}
       {error && (
-        <div className="glass-panel w-full max-w-2xl p-6 bg-red-500/10 text-red-600 rounded-3xl border border-red-200/50 shadow-sm flex items-start gap-4 backdrop-blur-md">
+        <div className="glass-panel w-full max-w-2xl p-6 bg-red-500/10 text-red-600 rounded-xl border border-red-200/50 shadow-sm flex items-start gap-4 backdrop-blur-md">
           <AlertCircle className="w-6 h-6 shrink-0 mt-0.5 text-red-500" />
           <div className="space-y-1">
             <p className="font-bold text-lg text-red-600">おっと、トラブル発生かな？</p>

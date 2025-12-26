@@ -34,7 +34,7 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 							<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] flex items-center gap-4">
 								<span
 									className={`
-                  w-10 h-10 rounded-full flex items-center justify-center text-base font-black shadow-sm transition-all duration-300
+                  w-10 h-10 rounded-lg flex items-center justify-center text-base font-black shadow-sm transition-all duration-300
                   ${
 										isOpen
 											? 'bg-gradient-to-br from-[var(--color-lemon-yellow)] to-[var(--color-sunset-orange)] text-white rotate-12'
@@ -47,7 +47,7 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 								<span className="tracking-tight group-hover:translate-x-1 transition-transform">Day {day.day}</span>
 							</h3>
 							<div
-								className={`p-2 rounded-full transition-all duration-300 ${
+								className={`p-2 rounded-lg transition-all duration-300 ${
 									isOpen ? 'bg-white/50 text-[var(--color-ocean-blue)]' : 'text-[var(--color-ocean-blue)]/50'
 								}`}
 							>

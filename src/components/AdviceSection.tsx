@@ -15,9 +15,9 @@ export default function AdviceSection({
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 			{/* 持ち物チェックリスト 🎒 */}
-			<div className="glass-panel p-6 md:p-8 rounded-3xl shadow-sm">
+			<div className="glass-panel p-6 md:p-8 rounded-xl shadow-sm">
 				<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] mb-6 flex items-center gap-3">
-					<div className="p-2 bg-white/50 rounded-xl text-[var(--color-ocean-blue)] shadow-sm">
+					<div className="p-2 bg-white/50 rounded-lg text-[var(--color-ocean-blue)] shadow-sm">
 						<Luggage className="w-6 h-6" />
 					</div>
 					持って行くと便利なもの
@@ -26,7 +26,7 @@ export default function AdviceSection({
 					{packingList.map((item, i) => (
 						<div
 							key={i}
-							className="flex items-start gap-4 p-4 bg-white/40 rounded-2xl hover:bg-white/60 transition-all group border border-white/40 hover:border-white/80"
+							className="flex items-start gap-4 p-4 bg-white/40 rounded-lg hover:bg-white/60 transition-all group border border-white/40 hover:border-white/80"
 						>
 							{/* shrink-0 をつけて、丸が潰れないように固定するよ！ */}
 							<div className="w-6 h-6 rounded-full border-2 border-[var(--color-ocean-blue)]/30 flex items-center justify-center group-hover:border-[var(--color-ocean-blue)] transition-colors shrink-0 mt-0.5 bg-white shadow-sm">
@@ -41,9 +41,9 @@ export default function AdviceSection({
 			</div>
 
 			{/* 旅のアドバイス 💡 */}
-			<div className="glass-panel p-6 md:p-8 rounded-3xl shadow-sm">
+			<div className="glass-panel p-6 md:p-8 rounded-xl shadow-sm">
 				<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] mb-6 flex items-center gap-3">
-					<div className="p-2 bg-white/50 rounded-xl text-[var(--color-lemon-yellow)] shadow-sm">
+					<div className="p-2 bg-white/50 rounded-lg text-[var(--color-lemon-yellow)] shadow-sm">
 						<Lightbulb className="w-6 h-6" />
 					</div>
 					旅のアドバイス
