@@ -1,15 +1,113 @@
 @import "tailwindcss";
 
-/* 
-  Style Reset: Basic Tailwind Setup only.
-  No custom themes, no animations, no glassmorphism.
-*/
+@theme {
+  --color-ocean-blue: #0099FF;
+  --color-ice-white: #F0F8FF;
+  --color-lemon-yellow: #FFE600;
+  --color-sunset-orange: #FF6B6B;
+  
+  --animate-bubble: bubble 15s infinite;
+  
+  @keyframes bubble {
+    0% {
+      transform: translateY(100vh) scale(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-10vh) scale(1.5);
+      opacity: 0;
+    }
+  }
+}
+
 :root {
-  /* Default browser fonts */
   --font-sans: system-ui, -apple-system, sans-serif;
 }
 
 body {
   font-family: var(--font-sans);
   min-height: 100vh;
+  /* Summer Gradient Background */
+  background: linear-gradient(135deg, var(--color-ice-white) 0%, #D4F1F9 50%, var(--color-ocean-blue) 100%);
+  background-attachment: fixed;
+  color: #003366; /* Deep Ocean Blue for text */
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Bubble Container */
+.bubbles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -20px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Ice Glass Utility Class */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  border-radius: 1.5rem;
+  /* Glossy highlight */
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 51%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+}
+
+/* Button Ripple Effect Helper (Simple CSS version) */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.3s ease;
+}
+
+.btn-ripple:active {
+  transform: scale(0.95);
+}
+
+.btn-ripple::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+
+.btn-ripple:active::after {
+  transform: scale(0, 0);
+  opacity: .3;
+  transition: 0s;
 }

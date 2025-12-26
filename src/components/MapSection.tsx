@@ -48,15 +48,15 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 			: [35.6812, 139.7671]; // スポットがない時は東京駅付近
 
 	return (
-		<div className="glass-card p-4 md:p-6 rounded-4xl shadow-sm overflow-hidden">
-			<h3 className="text-xl font-bold text-slate-700 mb-6 flex items-center gap-3">
-				<div className="p-2 bg-sky-50 rounded-xl text-sky-400">
+		<div className="glass-panel p-4 md:p-6 rounded-3xl shadow-sm overflow-hidden">
+			<h3 className="text-xl font-bold text-[var(--color-ocean-blue)] mb-6 flex items-center gap-3">
+				<div className="p-2 bg-white/50 rounded-xl text-[var(--color-ocean-blue)] shadow-sm">
 					<LucideMap className="w-6 h-6" />
 				</div>
 				旅のマップ
 			</h3>
 
-			<div className="h-87.5 md:h-112.5 w-full rounded-3xl overflow-hidden border border-sky-50 z-0 shadow-inner">
+			<div className="h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden border border-white/40 z-0 shadow-inner">
 				<MapContainer
 					center={centerPos}
 					zoom={13}
@@ -80,12 +80,12 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 											)}`}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="text-sky-500 hover:text-sky-600 hover:underline transition-all"
+											className="text-[var(--color-ocean-blue)] hover:text-[var(--color-sunset-orange)] hover:underline transition-all"
 										>
 											{spot.place}
 										</a>
 									</div>
-									<div className="text-[10px] font-bold text-slate-400 tracking-wider">
+									<div className="text-[10px] font-bold text-gray-400 tracking-wider">
 										{spot.type === 'hotel' ? '🏨 HOTEL' : '📍 SPOT'}
 									</div>
 								</div>
@@ -94,7 +94,7 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 					))}
 				</MapContainer>
 			</div>
-			<p className="text-xs font-medium text-slate-400 mt-4 text-center italic opacity-80">
+			<p className="text-xs font-medium text-[var(--color-ocean-blue)]/60 mt-4 text-center italic opacity-80">
 				ピンをタップすると場所の名前が見れるよ！📍
 			</p>
 		</div>

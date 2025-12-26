@@ -10,8 +10,8 @@ import AdviceSection from './AdviceSection';
 const MapSection = dynamic(() => import('./MapSection'), {
 	ssr: false,
 	loading: () => (
-		<div className="h-96 w-full bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
-			地図を読み込み中...
+		<div className="h-96 w-full bg-white/30 rounded-lg flex items-center justify-center text-[var(--color-ocean-blue)] animate-pulse">
+			地図を読み込み中...🗺️
 		</div>
 	),
 });
@@ -37,30 +37,30 @@ export default function PlanResult({
 	};
 
 	return (
-		<div className="space-y-12 py-8">
+		<div className="space-y-12 py-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
 			{/* Title & Copy */}
 			<div className="text-center space-y-4">
-				<h2 className="text-3xl font-bold text-gray-900">
+				<h2 className="text-3xl font-bold text-[var(--color-ocean-blue)] drop-shadow-sm">
 					{plan.title}
 				</h2>
 				<button
 					onClick={handleCopy}
 					className={`
-						inline-flex items-center gap-2 px-6 py-2 rounded-full text-sm font-medium border transition-colors
+						inline-flex items-center gap-2 px-6 py-2 rounded-full text-sm font-medium border transition-all shadow-sm
 						${
 							copied
-								? 'bg-emerald-100 text-emerald-700 border-emerald-200'
-								: 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'
+								? 'bg-[var(--color-lemon-yellow)] text-[var(--color-ocean-blue)] border-[var(--color-ocean-blue)]'
+								: 'bg-white/70 text-[var(--color-ocean-blue)] border-white/60 hover:bg-white hover:scale-105'
 						}
 					`}
 				>
 					{copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-					{copied ? 'コピーしました' : 'プランをコピー'}
+					{copied ? 'コピーしました！' : 'プランをコピー'}
 				</button>
 			</div>
 
 			{/* Map */}
-			<div className="rounded-lg overflow-hidden border border-gray-200">
+			<div>
 				<MapSection plan={plan} />
 			</div>
 
@@ -77,7 +77,7 @@ export default function PlanResult({
 			<div className="flex justify-center pt-8">
 				<button
 					onClick={onReset}
-					className="flex items-center gap-2 px-8 py-3 rounded-lg bg-gray-100 text-gray-700 font-medium hover:bg-gray-200 transition-colors"
+					className="btn-ripple flex items-center gap-2 px-8 py-3 rounded-full bg-white/40 text-[var(--color-ocean-blue)] font-bold border border-white/60 hover:bg-white/70 transition-colors shadow-lg"
 				>
 					<Repeat className="w-4 h-4" />
 					もう一度作る

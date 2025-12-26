@@ -84,11 +84,12 @@ export default function Home() {
       */}
       {!plan && (
         <div className="text-center space-y-4 py-12 px-4">
-          <h1 className="text-4xl md:text-6xl font-black text-slate-800 tracking-tight leading-[1.1] text-balance">
-            次は<span className="text-sky-400">どこ</span>に<br className="md:hidden"/>行く？
+          <h1 className="text-4xl md:text-6xl font-black text-white drop-shadow-md tracking-tight leading-[1.1] text-balance">
+            今年の夏は、<br className="md:hidden"/>
+            <span className="bg-gradient-to-r from-[var(--color-lemon-yellow)] to-[var(--color-sunset-orange)] bg-clip-text text-transparent drop-shadow-sm">どこ</span>に行く？
           </h1>
-          <p className="text-base md:text-xl text-slate-500 max-w-lg mx-auto leading-relaxed text-balance opacity-80">
-            Fuwari が、今のあなたにぴったりの旅行プランを瞬時に提案します。✨
+          <p className="text-base md:text-xl text-white/90 max-w-lg mx-auto leading-relaxed text-balance font-medium drop-shadow-sm">
+            Fuwari が、最高の夏休みプランを瞬時に提案します。🍹✨
           </p>
         </div>
       )}
@@ -98,10 +99,10 @@ export default function Home() {
         怖くないように、優しい水色と警告のオレンジを混ぜたデザインにしたよ。
       */}
       {error && (
-        <div className="w-full max-w-2xl p-6 bg-orange-50 text-orange-800 rounded-3xl border border-orange-200 shadow-sm flex items-start gap-4">
-          <AlertCircle className="w-6 h-6 shrink-0 mt-0.5" />
+        <div className="glass-panel w-full max-w-2xl p-6 bg-red-500/10 text-red-600 rounded-3xl border border-red-200/50 shadow-sm flex items-start gap-4 backdrop-blur-md">
+          <AlertCircle className="w-6 h-6 shrink-0 mt-0.5 text-red-500" />
           <div className="space-y-1">
-            <p className="font-bold text-lg">おっと、トラブル発生かな？</p>
+            <p className="font-bold text-lg text-red-600">おっと、トラブル発生かな？</p>
             <p className="text-sm opacity-90">{error}</p>
           </div>
         </div>
