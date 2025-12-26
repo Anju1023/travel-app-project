@@ -1,143 +1,15 @@
 @import "tailwindcss";
 
+/* 
+  Style Reset: Basic Tailwind Setup only.
+  No custom themes, no animations, no glassmorphism.
+*/
 :root {
-  /* Crystal Aurora Theme Palette */
-  --background: #F8FAFC;
-  --foreground: #334155; /* Slate-700: Softer than black, readable */
-
-  --primary: #0EA5E9; /* Sky-500: Vibrant but professional */
-  --primary-foreground: #FFFFFF;
-
-  --secondary: #E0F2FE; /* Sky-100 */
-  --secondary-foreground: #0369A1; /* Sky-700 */
-
-  --accent: #F0F9FF; /* Sky-50 */
-  --accent-foreground: #0C4A6E; /* Sky-900 */
-
-  --muted: #F1F5F9; /* Slate-100 */
-  --muted-foreground: #64748B; /* Slate-500 */
-  
-  --glass-border: rgba(255, 255, 255, 0.4);
-  --glass-surface: rgba(255, 255, 255, 0.65);
-  --glass-highlight: rgba(255, 255, 255, 0.8);
-}
-
-html {
-  background-color: var(--background);
+  /* Default browser fonts */
+  --font-sans: system-ui, -apple-system, sans-serif;
 }
 
 body {
-  background-color: transparent;
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-sans);
   min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* 
-  🌌 Aurora Background Animation 
-  Uses pseudo-elements to create moving orbs of light
-*/
-body::before,
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Orb 1: Soft Cyan */
-body::before {
-  background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.15), transparent 60%);
-  animation: aurora-move-1 20s ease-in-out infinite alternate;
-}
-
-/* Orb 2: Gentle Purple/Pink hint for depth */
-body::after {
-  background: radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.08), transparent 50%),
-              radial-gradient(circle at 20% 80%, rgba(56, 189, 248, 0.12), transparent 50%);
-  animation: aurora-move-2 25s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes aurora-move-1 {
-  0% { transform: translate(-10%, -10%) scale(1); }
-  100% { transform: translate(10%, 10%) scale(1.1); }
-}
-
-@keyframes aurora-move-2 {
-  0% { transform: translate(5%, 5%) scale(1); }
-  100% { transform: translate(-5%, -5%) scale(1.1); }
-}
-
-/* 
-  💎 Crystal Glassmorphism 
-  High-end, polished glass effect
-*/
-.glass {
-  background: var(--glass-surface);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.02),
-    0 2px 4px -1px rgba(0, 0, 0, 0.02),
-    inset 0 0 0 1px var(--glass-highlight); /* Inner glow */
-}
-
-/* More prominent glass card for main content */
-.glass-card {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(24px) saturate(180%); /* Higher blur & saturation for premium feel */
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 
-    0 10px 40px -10px rgba(14, 165, 233, 0.15), /* Sky blue shadow */
-    0 0 0 1px rgba(255, 255, 255, 0.6) inset; /* Crisp inner border */
-}
-
-/* Floating animation */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
-}
-
-.animate-float {
-  animation: float 5s ease-in-out infinite;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(14, 165, 233, 0.2);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(14, 165, 233, 0.4);
-}
-
-/* Custom Utilities mapping */
-@theme inline {
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  
-  --animate-aurora-1: aurora-move-1 20s ease-in-out infinite alternate;
-  --animate-aurora-2: aurora-move-2 25s ease-in-out infinite alternate-reverse;
 }
