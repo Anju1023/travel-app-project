@@ -31,7 +31,7 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 							onClick={() => toggleDay(day.day)}
 							className="w-full p-6 flex items-center justify-between text-left hover:bg-white/40 transition-colors group"
 						>
-							<h3 className="text-xl font-bold text-[var(--color-ocean-blue)] flex items-center gap-4">
+							<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] flex items-center gap-4">
 								<span
 									className={`
                   w-10 h-10 rounded-full flex items-center justify-center text-base font-black shadow-sm transition-all duration-300
@@ -79,7 +79,7 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 													<Clock className="w-4 h-4" />
 													{item.time}
 												</div>
-												<div className="font-bold text-xl text-[var(--color-ocean-blue)] tracking-tight">
+												<div className="font-bold text-xl text-[var(--color-deep-ocean)] tracking-tight">
 													{/* 場所名をクリックするとGoogle検索できるようにしたよ！🔍 */}
 													<a
 														href={`https://www.google.com/search?q=${encodeURIComponent(
@@ -94,7 +94,7 @@ export default function TimelineSection({ days }: { days: PlanData['days'] }) {
 													</a>
 												</div>
 											</div>
-											<p className="text-[var(--color-ocean-blue)]/80 text-sm leading-relaxed font-medium">
+											<p className="text-[var(--color-deep-ocean)]/80 text-sm leading-relaxed font-medium">
 												{item.description}
 											</p>
 										</div>

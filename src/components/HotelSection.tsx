@@ -11,7 +11,7 @@ export default function HotelSection({
 }) {
 	return (
 		<div className="glass-panel p-6 md:p-8 rounded-3xl shadow-sm">
-			<h3 className="text-xl font-bold text-[var(--color-ocean-blue)] mb-8 flex items-center gap-3">
+			<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] mb-8 flex items-center gap-3">
 				<div className="p-2 bg-white/50 rounded-xl text-[var(--color-ocean-blue)] shadow-sm">
 					<Hotel className="w-6 h-6" />
 				</div>
@@ -25,7 +25,7 @@ export default function HotelSection({
 					>
 						<div className="space-y-4 flex-1">
 							<div>
-								<h4 className="font-bold text-xl text-[var(--color-ocean-blue)] tracking-tight">
+								<h4 className="font-bold text-xl text-[var(--color-deep-ocean)] tracking-tight">
 									<a
 										href={`https://www.google.com/search?q=${encodeURIComponent(
 											hotel.name
@@ -38,7 +38,7 @@ export default function HotelSection({
 										{hotel.name}
 									</a>
 								</h4>
-								<div className="text-sm text-[var(--color-ocean-blue)]/60 flex items-center gap-2 mt-2 font-medium">
+								<div className="text-sm text-[var(--color-deep-ocean)]/70 flex items-center gap-2 mt-2 font-medium">
 									<MapPin className="w-4 h-4 text-[var(--color-ocean-blue)]" />
 									{hotel.area}
 								</div>
@@ -48,7 +48,7 @@ export default function HotelSection({
 								{hotel.features.map((f) => (
 									<span
 										key={f}
-										className="text-[10px] md:text-xs px-3 py-1 bg-white/60 text-[var(--color-ocean-blue)] rounded-full border border-white/50 font-bold tracking-wider uppercase shadow-sm"
+										className="text-[10px] md:text-xs px-3 py-1 bg-white/60 text-[var(--color-deep-ocean)] rounded-full border border-white/50 font-bold tracking-wider uppercase shadow-sm"
 									>
 										{f}
 									</span>
@@ -57,7 +57,7 @@ export default function HotelSection({
 						</div>
 
 						<div className="text-right w-full md:w-auto mt-4 md:mt-0 pt-4 md:pt-0 border-t md:border-t-0 border-white/30 flex md:flex-col items-center md:items-end justify-between md:justify-center gap-1">
-							<div className="text-[10px] font-black text-[var(--color-ocean-blue)]/40 tracking-[0.2em] uppercase">
+							<div className="text-[10px] font-black text-[var(--color-deep-ocean)]/40 tracking-[0.2em] uppercase">
 								宿泊目安
 							</div>
 							<div className="font-black text-2xl text-[var(--color-sunset-orange)] tracking-tight drop-shadow-sm">

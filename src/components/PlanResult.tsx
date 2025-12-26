@@ -40,7 +40,7 @@ export default function PlanResult({
 		<div className="space-y-12 py-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
 			{/* Title & Copy */}
 			<div className="text-center space-y-4">
-				<h2 className="text-3xl font-bold text-[var(--color-ocean-blue)] drop-shadow-sm">
+				<h2 className="text-3xl font-bold text-[var(--color-deep-ocean)] drop-shadow-sm">
 					{plan.title}
 				</h2>
 				<button
@@ -49,7 +49,7 @@ export default function PlanResult({
 						inline-flex items-center gap-2 px-6 py-2 rounded-full text-sm font-medium border transition-all shadow-sm
 						${
 							copied
-								? 'bg-[var(--color-lemon-yellow)] text-[var(--color-ocean-blue)] border-[var(--color-ocean-blue)]'
+								? 'bg-[var(--color-lemon-yellow)] text-[var(--color-deep-ocean)] border-[var(--color-ocean-blue)]'
 								: 'bg-white/70 text-[var(--color-ocean-blue)] border-white/60 hover:bg-white hover:scale-105'
 						}
 					`}
@@ -77,7 +77,7 @@ export default function PlanResult({
 			<div className="flex justify-center pt-8">
 				<button
 					onClick={onReset}
-					className="btn-ripple flex items-center gap-2 px-8 py-3 rounded-full bg-white/40 text-[var(--color-ocean-blue)] font-bold border border-white/60 hover:bg-white/70 transition-colors shadow-lg"
+					className="btn-ripple flex items-center gap-2 px-8 py-3 rounded-full bg-white/40 text-[var(--color-deep-ocean)] font-bold border border-white/60 hover:bg-white/70 transition-colors shadow-lg"
 				>
 					<Repeat className="w-4 h-4" />
 					もう一度作る

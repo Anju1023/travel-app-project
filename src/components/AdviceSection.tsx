@@ -16,7 +16,7 @@ export default function AdviceSection({
 		<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 			{/* 持ち物チェックリスト 🎒 */}
 			<div className="glass-panel p-6 md:p-8 rounded-3xl shadow-sm">
-				<h3 className="text-xl font-bold text-[var(--color-ocean-blue)] mb-6 flex items-center gap-3">
+				<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] mb-6 flex items-center gap-3">
 					<div className="p-2 bg-white/50 rounded-xl text-[var(--color-ocean-blue)] shadow-sm">
 						<Luggage className="w-6 h-6" />
 					</div>
@@ -32,7 +32,7 @@ export default function AdviceSection({
 							<div className="w-6 h-6 rounded-full border-2 border-[var(--color-ocean-blue)]/30 flex items-center justify-center group-hover:border-[var(--color-ocean-blue)] transition-colors shrink-0 mt-0.5 bg-white shadow-sm">
 								<CheckCircle2 className="w-4 h-4 text-[var(--color-ocean-blue)] opacity-0 group-hover:opacity-100 transition-opacity" />
 							</div>
-							<span className="text-sm font-medium text-[var(--color-ocean-blue)]/90 leading-relaxed">
+							<span className="text-sm font-medium text-[var(--color-deep-ocean)]/90 leading-relaxed">
 								{item}
 							</span>
 						</div>
@@ -42,7 +42,7 @@ export default function AdviceSection({
 
 			{/* 旅のアドバイス 💡 */}
 			<div className="glass-panel p-6 md:p-8 rounded-3xl shadow-sm">
-				<h3 className="text-xl font-bold text-[var(--color-ocean-blue)] mb-6 flex items-center gap-3">
+				<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] mb-6 flex items-center gap-3">
 					<div className="p-2 bg-white/50 rounded-xl text-[var(--color-lemon-yellow)] shadow-sm">
 						<Lightbulb className="w-6 h-6" />
 					</div>
@@ -53,7 +53,7 @@ export default function AdviceSection({
 						<div key={i} className="relative pl-6 group">
 							{/* 装飾用のライン */}
 							<div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--color-lemon-yellow)] to-[var(--color-sunset-orange)] rounded-full transition-all duration-300" />
-							<p className="text-sm leading-relaxed text-[var(--color-ocean-blue)]/80 font-medium italic">
+							<p className="text-sm leading-relaxed text-[var(--color-deep-ocean)]/80 font-medium italic">
 								“ {item} ”
 							</p>
 						</div>

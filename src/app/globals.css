@@ -2,6 +2,7 @@
 
 @theme {
   --color-ocean-blue: #0099FF;
+  --color-deep-ocean: #004d80; /* Text color for better contrast */
   --color-ice-white: #F0F8FF;
   --color-lemon-yellow: #FFE600;
   --color-sunset-orange: #FF6B6B;
@@ -33,7 +34,7 @@ body {
   /* Summer Gradient Background */
   background: linear-gradient(135deg, var(--color-ice-white) 0%, #D4F1F9 50%, var(--color-ocean-blue) 100%);
   background-attachment: fixed;
-  color: #003366; /* Deep Ocean Blue for text */
+  color: var(--color-deep-ocean); /* Use Deep Ocean for default text */
   overflow-x: hidden;
   position: relative;
 }
@@ -61,19 +62,19 @@ body {
 
 /* Ice Glass Utility Class */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  background: rgba(255, 255, 255, 0.75); /* Increased opacity for readability */
+  backdrop-filter: blur(16px); /* Stronger blur */
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px 0 rgba(0, 51, 102, 0.1); /* Deeper blue shadow */
   border-radius: 1.5rem;
   /* Glossy highlight */
   background-image: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0) 51%,
-    rgba(255, 255, 255, 0.1) 100%
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 51%,
+    rgba(255, 255, 255, 0.6) 100%
   );
 }
 

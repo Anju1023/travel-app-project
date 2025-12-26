@@ -49,7 +49,7 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 
 	return (
 		<div className="glass-panel p-4 md:p-6 rounded-3xl shadow-sm overflow-hidden">
-			<h3 className="text-xl font-bold text-[var(--color-ocean-blue)] mb-6 flex items-center gap-3">
+			<h3 className="text-xl font-bold text-[var(--color-deep-ocean)] mb-6 flex items-center gap-3">
 				<div className="p-2 bg-white/50 rounded-xl text-[var(--color-ocean-blue)] shadow-sm">
 					<LucideMap className="w-6 h-6" />
 				</div>
@@ -94,7 +94,7 @@ export default function MapSection({ plan }: { plan: PlanData }) {
 					))}
 				</MapContainer>
 			</div>
-			<p className="text-xs font-medium text-[var(--color-ocean-blue)]/60 mt-4 text-center italic opacity-80">
+			<p className="text-xs font-medium text-[var(--color-deep-ocean)]/70 mt-4 text-center italic opacity-80">
 				ピンをタップすると場所の名前が見れるよ！📍
 			</p>
 		</div>

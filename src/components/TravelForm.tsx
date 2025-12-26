@@ -139,7 +139,7 @@ export default function TravelForm({
 							<div className="inline-flex p-3 bg-white/50 rounded-full text-[var(--color-ocean-blue)] mb-2 shadow-sm">
 								<MapPin className="w-6 h-6" />
 							</div>
-							<h3 className="text-2xl font-bold text-[var(--color-ocean-blue)]">
+							<h3 className="text-2xl font-bold text-[var(--color-deep-ocean)]">
 								どこに行きたい？
 							</h3>
 						</div>
@@ -149,7 +149,7 @@ export default function TravelForm({
 								value={formData.destination}
 								onChange={(e) => handleChange('destination', e.target.value)}
 								placeholder="例：沖縄、ハワイ、伊豆..."
-								className="w-full p-4 bg-white/60 border border-white/60 rounded-xl focus:ring-2 focus:ring-[var(--color-ocean-blue)] focus:border-transparent outline-none text-lg text-center text-[var(--color-ocean-blue)] placeholder-[var(--color-ocean-blue)]/50 shadow-inner"
+								className="w-full p-4 bg-white/80 border border-white/60 rounded-xl focus:ring-2 focus:ring-[var(--color-ocean-blue)] focus:border-transparent outline-none text-lg text-center text-[var(--color-deep-ocean)] placeholder-[var(--color-deep-ocean)]/40 shadow-inner"
 								autoFocus
 							/>
 						</div>
@@ -163,20 +163,20 @@ export default function TravelForm({
 							<div className="inline-flex p-3 bg-white/50 rounded-full text-[var(--color-ocean-blue)] mb-2 shadow-sm">
 								<Calendar className="w-6 h-6" />
 							</div>
-							<h3 className="text-2xl font-bold text-[var(--color-ocean-blue)]">
+							<h3 className="text-2xl font-bold text-[var(--color-deep-ocean)]">
 								いつ、どれくらい？
 							</h3>
 						</div>
 
 						<div className="space-y-4">
 							<div className="space-y-1">
-								<label className="text-sm font-semibold text-[var(--color-ocean-blue)]">
+								<label className="text-sm font-semibold text-[var(--color-deep-ocean)]">
 									何泊する？
 								</label>
 								<select
 									value={formData.duration}
 									onChange={(e) => handleChange('duration', e.target.value)}
-									className="w-full p-3 bg-white/60 border border-white/60 rounded-xl focus:ring-2 focus:ring-[var(--color-ocean-blue)] outline-none text-[var(--color-ocean-blue)]"
+									className="w-full p-3 bg-white/80 border border-white/60 rounded-xl focus:ring-2 focus:ring-[var(--color-ocean-blue)] outline-none text-[var(--color-deep-ocean)]"
 								>
 									<option>日帰り</option>
 									<option>1泊2日</option>
@@ -187,7 +187,7 @@ export default function TravelForm({
 							</div>
 
 							<div className="space-y-1">
-								<label className="text-sm font-semibold text-[var(--color-ocean-blue)]">
+								<label className="text-sm font-semibold text-[var(--color-deep-ocean)]">
 									いつ頃行く？
 								</label>
 								<input
@@ -195,7 +195,7 @@ export default function TravelForm({
 									value={formData.timing}
 									onChange={(e) => handleChange('timing', e.target.value)}
 									placeholder="例：8月のお盆、来週の週末..."
-									className="w-full p-3 bg-white/60 border border-white/60 rounded-xl focus:ring-2 focus:ring-[var(--color-ocean-blue)] outline-none text-[var(--color-ocean-blue)] placeholder-[var(--color-ocean-blue)]/50"
+									className="w-full p-3 bg-white/80 border border-white/60 rounded-xl focus:ring-2 focus:ring-[var(--color-ocean-blue)] outline-none text-[var(--color-deep-ocean)] placeholder-[var(--color-deep-ocean)]/40"
 								/>
 							</div>
 						</div>
@@ -209,20 +209,20 @@ export default function TravelForm({
 							<div className="inline-flex p-3 bg-white/50 rounded-full text-[var(--color-ocean-blue)] mb-2 shadow-sm">
 								<Wallet className="w-6 h-6" />
 							</div>
-							<h3 className="text-2xl font-bold text-[var(--color-ocean-blue)]">
+							<h3 className="text-2xl font-bold text-[var(--color-deep-ocean)]">
 								予算とメンバーは？
 							</h3>
 						</div>
 
 						<div className="space-y-6">
 							<div className="space-y-1">
-								<label className="text-sm font-semibold text-[var(--color-ocean-blue)]">
+								<label className="text-sm font-semibold text-[var(--color-deep-ocean)]">
 									予算感
 								</label>
 								<select
 									value={formData.budget}
 									onChange={(e) => handleChange('budget', e.target.value)}
-									className="w-full p-3 bg-white/60 border border-white/60 rounded-xl focus:ring-2 focus:ring-[var(--color-ocean-blue)] outline-none text-[var(--color-ocean-blue)]"
+									className="w-full p-3 bg-white/80 border border-white/60 rounded-xl focus:ring-2 focus:ring-[var(--color-ocean-blue)] outline-none text-[var(--color-deep-ocean)]"
 								>
 									<option>なるべく安く</option>
 									<option>そこそこ（普通）</option>
@@ -232,7 +232,7 @@ export default function TravelForm({
 							</div>
 
 							<div className="space-y-2">
-								<label className="text-sm font-semibold text-[var(--color-ocean-blue)]">
+								<label className="text-sm font-semibold text-[var(--color-deep-ocean)]">
 									誰と行く？
 								</label>
 								<div className="grid grid-cols-2 gap-3">
@@ -249,8 +249,8 @@ export default function TravelForm({
 												}
 											`}
 										>
-											<item.icon className={`w-5 h-5 ${formData.companions === item.label ? 'text-[var(--color-ocean-blue)]' : 'text-gray-500'}`} />
-											<span className="font-medium text-sm text-[var(--color-ocean-blue)]">
+											<item.icon className={`w-5 h-5 ${formData.companions === item.label ? 'text-[var(--color-ocean-blue)]' : 'text-slate-400'}`} />
+											<span className={`font-medium text-sm ${formData.companions === item.label ? 'text-[var(--color-deep-ocean)]' : 'text-slate-600'}`}>
 												{item.label}
 											</span>
 											{formData.companions === item.label && (
@@ -271,10 +271,10 @@ export default function TravelForm({
 							<div className="inline-flex p-3 bg-white/50 rounded-full text-[var(--color-ocean-blue)] mb-2 shadow-sm">
 								<Heart className="w-6 h-6" />
 							</div>
-							<h3 className="text-2xl font-bold text-[var(--color-ocean-blue)]">
+							<h3 className="text-2xl font-bold text-[var(--color-deep-ocean)]">
 								どんな旅にしたい？
 							</h3>
-							<p className="text-[var(--color-ocean-blue)]/70 text-sm">複数選択可</p>
+							<p className="text-[var(--color-deep-ocean)]/70 text-sm">複数選択可</p>
 						</div>
 
 						<div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -293,10 +293,10 @@ export default function TravelForm({
 											}
 										`}
 									>
-										<item.icon className={`w-6 h-6 ${isSelected ? 'text-[var(--color-ocean-blue)]' : 'text-gray-500'}`} />
+										<item.icon className={`w-6 h-6 ${isSelected ? 'text-[var(--color-ocean-blue)]' : 'text-slate-400'}`} />
 										<span
 											className={`font-medium text-sm ${
-												isSelected ? 'text-[var(--color-ocean-blue)]' : 'text-gray-600'
+												isSelected ? 'text-[var(--color-deep-ocean)]' : 'text-slate-600'
 											}`}
 										>
 											{item.label}
@@ -315,7 +315,7 @@ export default function TravelForm({
 							<div className="inline-flex p-3 bg-white/50 rounded-full text-[var(--color-ocean-blue)] mb-2 shadow-sm">
 								<Sparkles className="w-6 h-6" />
 							</div>
-							<h3 className="text-2xl font-bold text-[var(--color-ocean-blue)]">
+							<h3 className="text-2xl font-bold text-[var(--color-deep-ocean)]">
 								その他のこだわり
 							</h3>
 						</div>
@@ -324,7 +324,7 @@ export default function TravelForm({
 								value={formData.freeText}
 								onChange={(e) => handleChange('freeText', e.target.value)}
 								placeholder="例：海が見えるカフェに行きたい、歴史的な建物を中心に回りたい..."
-								className="w-full p-4 bg-white/60 border border-white/60 rounded-xl focus:ring-2 focus:ring-[var(--color-ocean-blue)] outline-none min-h-40 text-[var(--color-ocean-blue)] placeholder-[var(--color-ocean-blue)]/50"
+								className="w-full p-4 bg-white/80 border border-white/60 rounded-xl focus:ring-2 focus:ring-[var(--color-ocean-blue)] outline-none min-h-40 text-[var(--color-deep-ocean)] placeholder-[var(--color-deep-ocean)]/40"
 								autoFocus
 							/>
 						</div>
